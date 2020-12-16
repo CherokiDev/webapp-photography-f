@@ -6,6 +6,7 @@ import Gallery from './containers/Gallery/Gallery';
 import Aboutme from './containers/Aboutme/Aboutme';
 import Contact from './containers/Contact/Contact';
 import Login from './containers/Login/Login';
+import Profile from './containers/Profile/Profile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/aboutme" component={Aboutme} exact />
         <Route path="/contact" component={Contact} exact />
         <Route path="/login" component={Login} exact />
+        <Route path="/profile" component={Profile} exact />
       </Switch>
     </BrowserRouter>
   );

@@ -2,7 +2,7 @@ const { LOGIN, LOGOUT } = require('../types/userType');
 
 const initialState = { user: {} };
 
-const useReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN:
             return {
@@ -19,4 +19,4 @@ const useReducer = (state = initialState, action) => {
     }
 }
 
-export default useReducer;
+export default userReducer;

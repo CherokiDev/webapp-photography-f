@@ -1,7 +1,11 @@
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Header = () => {
+const Header = (props) => {
+
+    
+
     return (
         <header className="header">
             <div>
@@ -16,11 +20,24 @@ const Header = () => {
             <div>
                 <NavLink to ="/contact" exact>Contacto</NavLink>
             </div>
+            {props.user?.token
+            ?
             <div>
-                <NavLink to ="/login" exact>Login</NavLink>
+                <NavLink to ="/profile" exact>Perfil</NavLink>
             </div>
+            :
+            <div>
+                <NavLink to ="/login" exact>Login / Registro</NavLink>
+            </div>
+            }
         </header>
     )
 }
+    
+const mapStateToProps = state => {
+    return {
+        user: state.userReducer.user
+    }
+}
 
-export default Header;
+export default connect(mapStateToProps)(Header);
