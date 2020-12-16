@@ -1,6 +1,8 @@
+import './Home.scss'
+
 const Home = () => {
     return (
-        <div>home</div>
+        <div>Inicio</div>
     )
 }
 
