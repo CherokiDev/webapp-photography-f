@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -8,11 +9,11 @@ const Profile = (props) => {
     const history = useHistory();
 
     const logout = async() => {
-        await axios.put('http://localhost:3005/users/logout/' + props.user?.email)
+        await axios.put('http://localhost:3005/users/logout/' + props.user.email)
         props.dispatch({ type: LOGOUT, payload: {}});
         setTimeout(() => {
             history.push('/')
-        }, 2000)
+        }, 1500)
     }
 
     return (
@@ -23,4 +24,10 @@ const Profile = (props) => {
     )
 }
 
-export default connect()(Profile);
+const mapStateToProps = state => {
+    return {
+        user: state.userReducer.user
+    }
+}
+
+export default connect(mapStateToProps)(Profile);

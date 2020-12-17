@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types/userType';
@@ -19,8 +19,8 @@ const Login = (props) => {
 
         axios.post('http://localhost:3005/users/login', user)
             .then(res => {
-                /* localStorage.setItem('user', JSON.stringify(res.data))
-                localStorage.setItem('token', JSON.stringify(res.data.token)) */
+                localStorage.setItem('token', JSON.stringify(res.data.token))
+                props.dispatch({ type: LOGIN, payload: res.data})
                 props.dispatch({ type: LOGIN, payload: res.data})
                 setMsg(`Bienvenid@`)
                 setTimeout(() => {
@@ -38,6 +38,7 @@ const Login = (props) => {
                 <input type="password" name="password" placeholder="Introduce tu contraseña" />
                 <button type="submit">Login</button>
                 <div>{msg}</div>
+                <div>Todavía no tienes cuenta? <Link to="/register">Regístrate</Link></div>
             </form>
         </>
     )
