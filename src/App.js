@@ -6,9 +6,9 @@ import Gallery from './containers/Gallery/Gallery';
 import Aboutme from './containers/Aboutme/Aboutme';
 import Contact from './containers/Contact/Contact';
 import Login from './containers/Login/Login';
-import Profile from './containers/Profile/Profile';
 import Register from './containers/Register/Register';
 import ProtectedRoute from './components/ProtectedRoute';
+import Profile from './containers/Profile/Profile';
 
 function App() {
   return (

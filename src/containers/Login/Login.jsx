@@ -9,33 +9,31 @@ const Login = (props) => {
     const history = useHistory();
     const [msg, setMsg] = useState("");
 
-    const send = event => {
+    const handleSubmit = event => {
         event.preventDefault();
 
-        const user = {
+        const userData = {
             email: event.target.email.value,
             password: event.target.password.value
         };
 
-        axios.post('http://localhost:3005/users/login', user)
+        axios.post('http://localhost:3005/users/login', userData)
             .then(res => {
-                localStorage.setItem('token', JSON.stringify(res.data.token))
-                props.dispatch({ type: LOGIN, payload: res.data})
-                props.dispatch({ type: LOGIN, payload: res.data})
+                props.dispatch({ type: LOGIN, payload: res.data })
                 setMsg(`Bienvenid@`)
                 setTimeout(() => {
                     history.push('/')
-                }, 2000)
+                }, 1500)
             }).catch(err => {
-                setMsg(`Hubo un error al intentar iniciar sesión`)
+                setMsg(`Ha habido un error al intentar iniciar sesión`)
             });
     }
 
     return (
         <>
-            <form action="" onSubmit={send}>
-                <input type="email" name="email" placeholder="Introduce tu correo electrónico" />
-                <input type="password" name="password" placeholder="Introduce tu contraseña" />
+            <form action="" onSubmit={handleSubmit}>
+                <input type="email" name="email" placeholder="Introduce tu correo electrónico" required />
+                <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 <button type="submit">Login</button>
                 <div>{msg}</div>
                 <div>Todavía no tienes cuenta? <Link to="/register">Regístrate</Link></div>
