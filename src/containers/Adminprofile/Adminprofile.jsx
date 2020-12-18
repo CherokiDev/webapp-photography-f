@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -12,6 +12,7 @@ const Profile = (props) => {
 
     const [startDate, setStartDate] = useState(new Date());
     const [msg, setMsg] = useState("");
+    const [appointments, setAppointments] = useState([]);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -21,12 +22,29 @@ const Profile = (props) => {
         }
 
         axios.post('http://localhost:3005/dateappointments/create', dateData)
-        .then(() => {
-            setMsg(`Cita creada`)
+        .then((res) => {
+            setMsg(`Cita ${res.data.dateappointment.date} creada correctamente`)
         }).catch(() => {
             setMsg(`Ha habido un error al intentar crear la cita`)
         });
     }
+
+    const getAppointments = async () => {
+        await axios.get('http://localhost:3005/dateappointments/allDates')
+        .then((res) => {
+            setAppointments(res.data.dateappointments)
+            return res;
+        }).catch((err) => {
+            return err;
+        });
+    }
+
+    useEffect(() => {
+        const allAppointments = async () => {
+            await getAppointments()
+        }
+        allAppointments()
+    }, [msg]);
 
     const logout = async () => {
         await axios.put('http://localhost:3005/users/logout/' + props.user.email)
@@ -45,7 +63,6 @@ const Profile = (props) => {
                     name="date"
                     selected={startDate}
                     onChange={date => setStartDate(date)}
-                    locale="es-ES"
                     showTimeSelect
                     timeFormat="p"
                     dateFormat="Pp"
@@ -53,8 +70,12 @@ const Profile = (props) => {
                 <button>Crear cita</button>
                 <div>{msg}</div>
             </form>
-
             <div>Citas creadas</div>
+            <div>
+                {appointments?.map(appointment =>
+                    <div key={appointment.id}>{appointment.status} --- {appointment.date}</div>
+                    )}
+            </div>
             <button onClick={logout}>Salir</button>
         </>
     )
