@@ -9,6 +9,7 @@ import Login from './containers/Login/Login';
 import Register from './containers/Register/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './containers/Profile/Profile';
+import Adminprofile from './containers/Adminprofile/Adminprofile';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" component={Register} exact />
         <ProtectedRoute>
           <Route path="/profile" component={Profile} exact />
+          <Route path="/adminprofile"component={Adminprofile} exact />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

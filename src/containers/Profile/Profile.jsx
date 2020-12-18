@@ -13,7 +13,7 @@ const Profile = (props) => {
         props.dispatch({ type: LOGOUT, payload: {}});
         setTimeout(() => {
             history.push('/')
-        }, 1500)
+        }, 1000)
     }
 
     return (

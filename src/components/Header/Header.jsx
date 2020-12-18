@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const Header = (props) => {
 
-    
+    const adminRole = ("admin");
 
     return (
         <header className="header">
@@ -19,22 +19,27 @@ const Header = (props) => {
                 <NavLink to="/aboutme" exact>Sobre mí</NavLink>
             </div>
             <div>
-                <NavLink to ="/contact" exact>Contacto</NavLink>
+                <NavLink to="/contact" exact>Contacto</NavLink>
             </div>
             {props.user?.token
-            ?
-            <div>
-                <NavLink to ="/profile" exact>Perfil</NavLink>
-            </div>
-            :
-            <div>
-                <NavLink to ="/login" exact>Login / Registro</NavLink>
-            </div>
+                ?
+                <div>
+                    {adminRole.includes(props.user.role)
+                        ?
+                        <NavLink to="/adminprofile" exact>Perfil (admin)</NavLink>
+                        :
+                        <NavLink to="/profile" exact>Perfil</NavLink>
+                    }
+                </div>
+                :
+                <div>
+                    <NavLink to="/login" exact>Login / Registro</NavLink>
+                </div>
             }
         </header>
     )
 }
-    
+
 const mapStateToProps = state => {
     return {
         user: state.userReducer.user
