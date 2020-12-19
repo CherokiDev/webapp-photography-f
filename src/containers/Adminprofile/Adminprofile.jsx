@@ -39,12 +39,14 @@ const Profile = (props) => {
         });
     }
 
-    useEffect(() => {
-        const allAppointments = async () => {
-            await getAppointments()
-        }
-        allAppointments()
-    }, [msg]);
+    const deleteAppointment = async (appointment) => {
+        await axios.delete('http://localhost:3005/dateappointments/delete/' + appointment)
+        .then(() => {
+            setMsg(`${Date.now()}. Cita borrada correctamente`)
+        }).catch((err) => {
+            return err;
+        });
+    }
 
     const logout = async () => {
         await axios.put('http://localhost:3005/users/logout/' + props.user.email)
@@ -53,6 +55,13 @@ const Profile = (props) => {
             history.push('/')
         }, 1000)
     }
+
+    useEffect(() => {
+        const allAppointments = async () => {
+            await getAppointments()
+        }
+        allAppointments()
+    }, [msg]);
 
     return (
         <>
@@ -73,7 +82,7 @@ const Profile = (props) => {
             <div>Citas creadas</div>
             <div>
                 {appointments?.map(appointment =>
-                    <div key={appointment.id}>{appointment.status} --- {appointment.date}</div>
+                    <div key={appointment.id}>{appointment.status} --- {appointment.date} <button onClick={() => deleteAppointment(appointment.id)}>Borrar cita</button> </div>
                     )}
             </div>
             <button onClick={logout}>Salir</button>
