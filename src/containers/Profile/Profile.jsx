@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { LOGOUT } from '../../redux/types/userType';
 
 const Profile = (props) => {
@@ -19,6 +19,8 @@ const Profile = (props) => {
     return (
         <>
             <div>Perfil</div>
+            <button><Link to="/profile/appointments">Pedir / modificar una cita</Link> </button>
+            <div></div>
             <button onClick={logout}>Salir</button>
         </>
     )
