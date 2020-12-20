@@ -33,12 +33,17 @@ const Appointments = (props) => {
             DateappointmentId: event.target.DateappointmentId.value
         }
 
+        const statusAppointment = {
+            status: "Reservada"
+        }
+
         axios.post('http://localhost:3005/appointments/create', appointmentsData, {
             headers: {
                 Authorization: "Bearer " + checkToken
             }
         })
             .then((res) => {
+                axios.put('http://localhost:3005/dateappointments/update/' + appointmentsData.DateappointmentId, statusAppointment)
                 return res
             }).catch((err) => {
                 return err
@@ -63,7 +68,7 @@ const Appointments = (props) => {
 
                 <select name="DateappointmentId" id="" size="5" required>
                     {availableDates?.map(date =>
-                        <option value={date.id}>{date.date}</option>
+                        <option key={date.id} value={date.id}>{date.date}</option>
                     )}
                 </select>
                 <div></div>
