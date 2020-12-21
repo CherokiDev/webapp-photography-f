@@ -13,6 +13,7 @@ const Profile = (props) => {
     const [startDate, setStartDate] = useState(new Date());
     const [msg, setMsg] = useState("");
     const [appointments, setAppointments] = useState([]);
+    const checkToken = props.user.token
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -40,7 +41,14 @@ const Profile = (props) => {
     }
 
     const deleteAppointment = async (appointment) => {
-        await axios.delete('http://localhost:3005/dateappointments/delete/' + appointment)
+        if (appointment.status === "Reservada") {
+            await axios.delete('http://localhost:3005/appointments/deleteByDateAppointmentId/' + appointment.id, {
+                    headers: {
+                        Authorization: "Bearer " + checkToken
+                    }
+                })
+        }
+        await axios.delete('http://localhost:3005/dateappointments/delete/' + appointment.id)
         .then(() => {
             setMsg(`${Date.now()}. Cita borrada correctamente`)
         }).catch((err) => {
@@ -82,7 +90,7 @@ const Profile = (props) => {
             <div>Citas creadas</div>
             <div>
                 {appointments?.map(appointment =>
-                    <div key={appointment.id}>{appointment.status} --- {appointment.date} <button onClick={() => deleteAppointment(appointment.id)}>Borrar cita</button> </div>
+                    <div key={appointment.id}>{appointment.status} --- {appointment.date} <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button> </div>
                     )}
             </div>
             <button onClick={logout}>Salir</button>
