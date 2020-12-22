@@ -24,21 +24,21 @@ const Profile = (props) => {
         }
 
         axios.post(process.env.REACT_APP_API_URL + '/dateappointments/create', dateData)
-        .then((res) => {
-            setMsg(`Cita ${res.data.dateappointment.date} creada correctamente`)
-        }).catch(() => {
-            setMsg(`Ha habido un error al intentar crear la cita`)
-        });
+            .then((res) => {
+                setMsg(`Cita ${res.data.dateappointment.date} creada correctamente`)
+            }).catch(() => {
+                setMsg(`Ha habido un error al intentar crear la cita`)
+            });
     }
 
     const getAppointments = async () => {
         await axios.get(process.env.REACT_APP_API_URL + '/dateappointments/allDates')
-        .then((res) => {
-            setAppointments(res.data.dateappointments)
-            return res;
-        }).catch((err) => {
-            return err;
-        });
+            .then((res) => {
+                setAppointments(res.data.dateappointments)
+                return res;
+            }).catch((err) => {
+                return err;
+            });
     }
 
     useEffect(() => {
@@ -48,32 +48,32 @@ const Profile = (props) => {
                     Authorization: "Bearer " + checkToken
                 }
             })
-            .then((res) => {
-                setAllDates(res.data.appointments)
-                return res
-            }).catch((err) => {
-                return err
-            });
+                .then((res) => {
+                    setAllDates(res.data.appointments)
+                    return res
+                }).catch((err) => {
+                    return err
+                });
         }
         getAll()
         // eslint-disable-next-line
     }, [msg])
-    
+
 
     const deleteAppointment = async (appointment) => {
         if (appointment.status === "Reservada") {
             await axios.delete(process.env.REACT_APP_API_URL + '/appointments/deleteByDateAppointmentId/' + appointment.id, {
-                    headers: {
-                        Authorization: "Bearer " + checkToken
-                    }
-                })
+                headers: {
+                    Authorization: "Bearer " + checkToken
+                }
+            })
         }
         await axios.delete(process.env.REACT_APP_API_URL + '/dateappointments/delete/' + appointment.id)
-        .then(() => {
-            setMsg(`${Date.now()}. Cita borrada correctamente`)
-        }).catch((err) => {
-            return err;
-        });
+            .then(() => {
+                setMsg(`${Date.now()}. Cita borrada correctamente`)
+            }).catch((err) => {
+                return err;
+            });
     }
 
     const logout = async () => {
@@ -111,48 +111,25 @@ const Profile = (props) => {
             <div>
                 {appointments?.map(appointment =>
                     <div key={appointment.id}>{appointment.status} --- {appointment.date} <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button> </div>
-                    )}
+                )}
             </div>
             <div>Tabla de citas reservadas</div>
-
-                    <div className="borde">
+            <div>
+                {allDates?.map(date =>
+                    <div key={date.id}>
                         <div>TIPO</div>
-                        {allDates?.map(date =>
-                        <div className="tabla">                            
-                            <div>{date.type}</div>                            
-                        </div>)}
-                    </div>
-
-                     <div className="borde">
+                        <div>{date.type}</div>
                         <div>OBSERVACIONES</div>
-                        {allDates?.map(date =>
-                        <div className="tabla">                            
-                            <div>{date.observations}</div>                            
-                        </div>)}
-                    </div>
-
-                    <div className="borde">
+                        <div>{date.observations}</div>
                         <div>USUARIO</div>
-                        {allDates?.map(date =>
-                        <div className="tabla">                            
-                            <div>{date.User.firstname}</div>
-                            <div>{date.User.lastname}</div>
-                            <div>{date.User.email}</div>
-                            <div>{date.User.phone}</div>
-                        </div>)}
-                    </div>
-
-                    <div className="borde">
+                        <div>{date.User.firstname} --- {date.User.lastname} --- {date.User.email} --- {date.User.phone}</div>
                         <div>FECHA</div>
-                        {allDates?.map(date =>
-                        <div className="tabla">                            
-                            <div>{date.Dateappointment.date}</div>                            
-                        </div>)}
+                        <div>{date.Dateappointment.date}</div>
                     </div>
-                
-                    <button onClick={logout}>Salir</button>
-                
+                )}
+            </div>
 
+            <button onClick={logout}>Salir</button>
         </>
     )
 }
