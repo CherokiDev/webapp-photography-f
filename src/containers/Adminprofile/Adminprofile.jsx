@@ -10,9 +10,10 @@ const Profile = (props) => {
 
     const history = useHistory();
 
-    const [startDate, setStartDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const [msg, setMsg] = useState("");
     const [appointments, setAppointments] = useState([]);
+    const [allDates, setAllDates] = useState([])
     const checkToken = props.user.token
 
     const handleSubmit = event => {
@@ -39,6 +40,25 @@ const Profile = (props) => {
             return err;
         });
     }
+
+    useEffect(() => {
+        const getAll = async () => {
+            await axios.get(process.env.REACT_APP_API_URL + '/appointments/allWithUserAndDate', {
+                headers: {
+                    Authorization: "Bearer " + checkToken
+                }
+            })
+            .then((res) => {
+                setAllDates(res.data.appointments)
+                return res
+            }).catch((err) => {
+                return err
+            });
+        }
+        getAll()
+        // eslint-disable-next-line
+    }, [msg])
+    
 
     const deleteAppointment = async (appointment) => {
         if (appointment.status === "Reservada") {
@@ -78,8 +98,8 @@ const Profile = (props) => {
             <form action="" onSubmit={handleSubmit}>
                 <DatePicker
                     name="date"
-                    selected={startDate}
-                    onChange={date => setStartDate(date)}
+                    selected={selectedDate}
+                    onChange={date => setSelectedDate(date)}
                     showTimeSelect
                     timeFormat="p"
                     dateFormat="Pp"
@@ -93,7 +113,46 @@ const Profile = (props) => {
                     <div key={appointment.id}>{appointment.status} --- {appointment.date} <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button> </div>
                     )}
             </div>
-            <button onClick={logout}>Salir</button>
+            <div>Tabla de citas reservadas</div>
+
+                    <div className="borde">
+                        <div>TIPO</div>
+                        {allDates?.map(date =>
+                        <div className="tabla">                            
+                            <div>{date.type}</div>                            
+                        </div>)}
+                    </div>
+
+                     <div className="borde">
+                        <div>OBSERVACIONES</div>
+                        {allDates?.map(date =>
+                        <div className="tabla">                            
+                            <div>{date.observations}</div>                            
+                        </div>)}
+                    </div>
+
+                    <div className="borde">
+                        <div>USUARIO</div>
+                        {allDates?.map(date =>
+                        <div className="tabla">                            
+                            <div>{date.User.firstname}</div>
+                            <div>{date.User.lastname}</div>
+                            <div>{date.User.email}</div>
+                            <div>{date.User.phone}</div>
+                        </div>)}
+                    </div>
+
+                    <div className="borde">
+                        <div>FECHA</div>
+                        {allDates?.map(date =>
+                        <div className="tabla">                            
+                            <div>{date.Dateappointment.date}</div>                            
+                        </div>)}
+                    </div>
+                
+                    <button onClick={logout}>Salir</button>
+                
+
         </>
     )
 }
