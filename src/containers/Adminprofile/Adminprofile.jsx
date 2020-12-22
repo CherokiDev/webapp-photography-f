@@ -22,7 +22,7 @@ const Profile = (props) => {
             date: event.target.date.value
         }
 
-        axios.post('http://localhost:3005/dateappointments/create', dateData)
+        axios.post(process.env.REACT_APP_API_URL + '/dateappointments/create', dateData)
         .then((res) => {
             setMsg(`Cita ${res.data.dateappointment.date} creada correctamente`)
         }).catch(() => {
@@ -31,7 +31,7 @@ const Profile = (props) => {
     }
 
     const getAppointments = async () => {
-        await axios.get('http://localhost:3005/dateappointments/allDates')
+        await axios.get(process.env.REACT_APP_API_URL + '/dateappointments/allDates')
         .then((res) => {
             setAppointments(res.data.dateappointments)
             return res;
@@ -42,13 +42,13 @@ const Profile = (props) => {
 
     const deleteAppointment = async (appointment) => {
         if (appointment.status === "Reservada") {
-            await axios.delete('http://localhost:3005/appointments/deleteByDateAppointmentId/' + appointment.id, {
+            await axios.delete(process.env.REACT_APP_API_URL + '/appointments/deleteByDateAppointmentId/' + appointment.id, {
                     headers: {
                         Authorization: "Bearer " + checkToken
                     }
                 })
         }
-        await axios.delete('http://localhost:3005/dateappointments/delete/' + appointment.id)
+        await axios.delete(process.env.REACT_APP_API_URL + '/dateappointments/delete/' + appointment.id)
         .then(() => {
             setMsg(`${Date.now()}. Cita borrada correctamente`)
         }).catch((err) => {
@@ -57,7 +57,7 @@ const Profile = (props) => {
     }
 
     const logout = async () => {
-        await axios.put('http://localhost:3005/users/logout/' + props.user.email)
+        await axios.put(process.env.REACT_APP_API_URL + '/users/logout/' + props.user.email)
         props.dispatch({ type: LOGOUT, payload: {} });
         setTimeout(() => {
             history.push('/')

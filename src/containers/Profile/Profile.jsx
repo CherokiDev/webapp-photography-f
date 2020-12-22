@@ -9,7 +9,7 @@ const Profile = (props) => {
     const history = useHistory();
   
     const logout = async () => {
-        await axios.put('http://localhost:3005/users/logout/' + props.user.email)
+        await axios.put(process.env.REACT_APP_API_URL + '/users/logout/' + props.user.email)
         props.dispatch({ type: LOGOUT, payload: {} });
         history.push('/')
         

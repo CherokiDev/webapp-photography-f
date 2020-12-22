@@ -37,7 +37,7 @@ const Register = () => {
             return;
         }
 
-        axios.post('http://localhost:3005/users/register', userData)
+        axios.post(process.env.REACT_APP_API_URL + '/users/register', userData)
             .then(() => {
                 setMsg(`Registro completado`)
                 setTimeout(() => {

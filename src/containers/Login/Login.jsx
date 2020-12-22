@@ -17,7 +17,7 @@ const Login = (props) => {
             password: event.target.password.value
         };
 
-        axios.post('http://localhost:3005/users/login', userData)
+        axios.post(process.env.REACT_APP_API_URL + '/users/login', userData)
             .then(res => {
                 props.dispatch({ type: LOGIN, payload: res.data })
                 setMsg(`Bienvenid@`)

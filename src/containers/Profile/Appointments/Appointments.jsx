@@ -20,7 +20,7 @@ const Appointments = (props) => {
 
     useEffect(() => {
         const userId = async () => {
-            await axios.get('http://localhost:3005/appointments/byUserId/' + props.user.id, {
+            await axios.get(process.env.REACT_APP_API_URL + '/appointments/byUserId/' + props.user.id, {
                 headers: {
                     Authorization: "Bearer " + checkToken
                 }
@@ -29,7 +29,7 @@ const Appointments = (props) => {
                     if (!res.data.UserId) {
                         setMsg(withoutAppointment)
                     } else {
-                        axios.get('http://localhost:3005/dateappointments/getById/' + res.data.DateappointmentId)
+                        axios.get(process.env.REACT_APP_API_URL + '/dateappointments/getById/' + res.data.DateappointmentId)
                             .then((res) => {
                                 setMsg(`Tienes una cita para la fecha ${res.data.date}`)
                             }).catch((err) => {
@@ -47,9 +47,9 @@ const Appointments = (props) => {
     }, [])
 
     const canceledAppointment = async () => {
-        await axios.put('http://localhost:3005/dateappointments/update/' + dataAppointment.DateappointmentId, statusAppointment)
+        await axios.put(process.env.REACT_APP_API_URL + '/dateappointments/update/' + dataAppointment.DateappointmentId, statusAppointment)
             .then(() => {
-                axios.delete('http://localhost:3005/appointments/delete/' + dataAppointment.id, {
+                axios.delete(process.env.REACT_APP_API_URL + '/appointments/delete/' + dataAppointment.id, {
                     headers: {
                         Authorization: "Bearer " + checkToken
                     }
@@ -64,7 +64,7 @@ const Appointments = (props) => {
     }
 
     const getAvailableDates = async () => {
-        await axios.get('http://localhost:3005/dateappointments/availableDates')
+        await axios.get(process.env.REACT_APP_API_URL + '/dateappointments/availableDates')
             .then((res) => {
                 setAvailableDates(res.data.availableDates)
             }).catch((err) => {
@@ -94,13 +94,13 @@ const Appointments = (props) => {
             status: "Reservada"
         }
 
-        axios.post('http://localhost:3005/appointments/create', appointmentsData, {
+        axios.post(process.env.REACT_APP_API_URL + '/appointments/create', appointmentsData, {
             headers: {
                 Authorization: "Bearer " + checkToken
             }
         })
             .then((res) => {
-                axios.put('http://localhost:3005/dateappointments/update/' + appointmentsData.DateappointmentId, statusAppointment)
+                axios.put(process.env.REACT_APP_API_URL + '/dateappointments/update/' + appointmentsData.DateappointmentId, statusAppointment)
                 Swal.fire("Cita creada correctamente")
                 setTimeout(() => {
                     history.push('/profile')
