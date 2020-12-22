@@ -1,7 +1,8 @@
 import React from 'react';
-import './Header.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './Header.scss';
+import logo from '../../img/logo1.png'
 
 const Header = (props) => {
 
@@ -9,21 +10,26 @@ const Header = (props) => {
 
     return (
         <header className="header">
-            <div>
+            <div className="logo">
+                <Link to="/">
+                <img src={logo} alt=""/>
+                </Link>
+            </div>
+            <div className="headerButtons">
                 <NavLink to="/" exact>Inicio</NavLink>
             </div>
-            <div>
+            <div className="headerButtons">
                 <NavLink to="/gallery" exact>Galería</NavLink>
             </div>
-            <div>
+            <div className="headerButtons">
                 <NavLink to="/aboutme" exact>Sobre mí</NavLink>
             </div>
-            <div>
+            <div className="headerButtons">
                 <NavLink to="/contact" exact>Contacto</NavLink>
             </div>
             {props.user?.token
                 ?
-                <div>
+                <div className="headerButtons">
                     {adminRole.includes(props.user.role)
                         ?
                         <NavLink to="/adminprofile" exact>Perfil (admin)</NavLink>
@@ -32,7 +38,7 @@ const Header = (props) => {
                     }
                 </div>
                 :
-                <div>
+                <div className="headerButtons">
                     <NavLink to="/login" exact>Login / Registro</NavLink>
                 </div>
             }

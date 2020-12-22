@@ -1,7 +1,37 @@
+body {
+    background-color: #A07D7D;
+}
+
 .header {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: lightcoral;
-    height: 3em;
+    background-color: white;
+    height: 8em;
+}
+
+.logo {
+    width: 6em;
+    height: 6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        img {
+            width: 7em;
+        }
+}
+
+.headerButtons {
+    transition: 1s;
+    border-radius: 0.2em;
+    &:hover {
+        transition: 1s;
+        background-color: #D3C6C6;
+    }
+        a {
+            all: unset;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0.5em;
+        }
 }
