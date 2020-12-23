@@ -1,5 +1,5 @@
 body {
-    background-color: #A07D7D;
+    background-color: #F9D5D5;
 }
 
 .header {
@@ -31,6 +31,7 @@ body {
         a {
             all: unset;
             cursor: pointer;
+            color: #816474;
             font-family: Arial, Helvetica, sans-serif;
             padding: 0.5em;
         }
@@ -45,7 +46,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     position: fixed;
     top: 0;
     left: 0;
@@ -63,7 +64,7 @@ body {
 .headerButtonOpenMenu {
     display: flex;
     position: fixed;
-    right: 5em;
+    right: 2em;
     width: 2.5em;
     height: 2.5em;
     display: flex;
@@ -78,7 +79,7 @@ body {
 .headerButtonCloseMenu {
     display: flex;
     position: fixed;
-    right: 5em;
+    right: 2em;
     top: 2.8em;
     width: 2.5em;
     height: 2.5em;

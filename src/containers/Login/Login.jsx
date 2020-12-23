@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types/userType';
+import Swal from 'sweetalert2';
+import './Login.scss'
 
 
 const Login = (props) => {
     const history = useHistory();
-    const [msg, setMsg] = useState("");
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -20,25 +21,45 @@ const Login = (props) => {
         axios.post(process.env.REACT_APP_API_URL + '/users/login', userData)
             .then(res => {
                 props.dispatch({ type: LOGIN, payload: res.data })
-                setMsg(`Bienvenid@`)
+                Swal.fire({
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    icon: 'success',
+                    title: 'Sesión iniciada correctamente'
+                })
+
                 setTimeout(() => {
                     history.push('/')
                 }, 1500)
             }).catch(err => {
-                setMsg(`Ha habido un error al intentar iniciar sesión`)
+                Swal.fire({
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    icon: 'error',
+                    title: 'Ha habido un error al intentar iniciar sesión'
+                })
             });
     }
 
     return (
         <>
-            <form action="" onSubmit={handleSubmit}>
+            <form className="loginForm" action="" onSubmit={handleSubmit}>
+                <h3>Inicio de sesión</h3>
+                <div>Correo electrónico:</div>
                 <input type="email" name="email" placeholder="Introduce tu correo electrónico" required />
+                <div>Contraseña:</div>
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
-                <button type="submit">Login</button>
-                <div>{msg}</div>
-                <div>Todavía no tienes cuenta? <Link to="/register">Regístrate</Link></div>
+                <div className="divButton">
+                    <button type="submit">Iniciar sesión</button>
+                    <div>¿No tienes cuenta? <Link to="/register">Crear una cuenta</Link></div>
+                </div>
             </form>
         </>
     )
 }
+
 export default connect()(Login);
