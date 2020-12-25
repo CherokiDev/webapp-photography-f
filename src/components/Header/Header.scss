@@ -8,6 +8,9 @@ body {
     justify-content: space-around;
     background-color: white;
     height: 8em;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 
 .logo {

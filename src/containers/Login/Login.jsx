@@ -22,12 +22,11 @@ const Login = (props) => {
             .then(res => {
                 props.dispatch({ type: LOGIN, payload: res.data })
                 Swal.fire({
-                    toast: true,
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
                     icon: 'success',
-                    title: 'Sesión iniciada correctamente'
+                    text: 'Sesión iniciada correctamente'
                 })
 
                 setTimeout(() => {
@@ -35,12 +34,9 @@ const Login = (props) => {
                 }, 1500)
             }).catch(err => {
                 Swal.fire({
-                    toast: true,
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
+                    showConfirmButton: true,
                     icon: 'error',
-                    title: 'Ha habido un error al intentar iniciar sesión'
+                    text: 'Ha habido un error al intentar iniciar sesión'
                 })
             });
     }
@@ -55,7 +51,8 @@ const Login = (props) => {
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 <div className="divButton">
                     <button type="submit">Iniciar sesión</button>
-                    <div>¿No tienes cuenta? <Link to="/register">Crear una cuenta</Link></div>
+                    <div>¿Todavía no tienes cuenta?</div> 
+                    <div><Link to="/register">Crear una cuenta nueva</Link></div>
                 </div>
             </form>
         </>

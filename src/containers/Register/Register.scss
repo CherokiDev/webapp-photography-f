@@ -1,4 +1,4 @@
-.loginForm {
+.registerForm {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -49,14 +49,14 @@
 }
 
 @media (max-width: 1024px) {
-    .loginForm {
+    .registerForm {
         margin: 2em 10em;
     }
     
 }
 
 @media (max-width: 768px) {
-    .loginForm {
+    .registerForm {
         margin: auto;
 
         input {
