@@ -10,6 +10,7 @@ import Register from './containers/Register/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './containers/Profile/Profile';
 import Adminprofile from './containers/Adminprofile/Adminprofile';
+import Adminappointments from './containers/Adminprofile/Adminappointments/Adminappointments'
 import Appointments from './containers/Profile/Appointments/Appointments';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/appointments" component={Appointments} exact />
           <Route path="/adminprofile"component={Adminprofile} exact />
+          <Route path="/adminprofile/adminappointments" component={Adminappointments} exact />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
