@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { LOGOUT } from '../../../redux/types/userType';
+import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Logout from '../../../components/Logout/Logout'
-import './Adminappointments.scss'
+import './Adminappointments.scss';
+import moment from 'moment';
+import 'moment/locale/es';
+import Swal from 'sweetalert2';
+moment.locale('es')
 
 const Profile = (props) => {
-
-    const history = useHistory();
 
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [msg, setMsg] = useState("");
@@ -27,7 +28,12 @@ const Profile = (props) => {
 
         axios.post(process.env.REACT_APP_API_URL + '/dateappointments/create', dateData)
             .then((res) => {
-                setMsg(`Cita ${res.data.dateappointment.date} creada correctamente`)
+                setMsg (`Cita número ${res.data.dateappointment.id} creada correctamente`)
+                Swal.fire({
+                    showConfirmButton: true,
+                    icon: 'success',
+                    text: `Cita ${moment(res.data.dateappointment.date).format('[para el ] dddd, LL [ a las ] h:mm A')} creada correctamente`
+                })
             }).catch(() => {
                 setMsg(`Ha habido un error al intentar crear la cita`)
             });
@@ -78,14 +84,6 @@ const Profile = (props) => {
             });
     }
 
-    const logout = async () => {
-        await axios.put(process.env.REACT_APP_API_URL + '/users/logout/' + props.user.email)
-        props.dispatch({ type: LOGOUT, payload: {} });
-        setTimeout(() => {
-            history.push('/')
-        }, 1000)
-    }
-
     useEffect(() => {
         const allAppointments = async () => {
             await getAppointments()
@@ -95,8 +93,7 @@ const Profile = (props) => {
 
     return (
         <>
-            <Logout/>
-            <div>Perfil del administrador</div>
+            <Logout />
             <div>Crear nuevas citas</div>
             <form action="" onSubmit={handleSubmit}>
                 <DatePicker
@@ -113,7 +110,7 @@ const Profile = (props) => {
             <div>Citas creadas</div>
             <div>
                 {appointments?.map(appointment =>
-                    <div key={appointment.id}>{appointment.status} --- {appointment.date} <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button> </div>
+                    <div key={appointment.id}>{appointment.status} --- {moment(appointment.date).format('dddd, LL [ a las ] h:mm A')} <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button> </div>
                 )}
             </div>
             <div>Tabla de citas reservadas</div>
@@ -127,12 +124,10 @@ const Profile = (props) => {
                         <div>USUARIO</div>
                         <div>{date.User.firstname} --- {date.User.lastname} --- {date.User.email} --- {date.User.phone}</div>
                         <div>FECHA</div>
-                        <div>{date.Dateappointment.date}</div>
+                        <div>{moment(date.Dateappointment.date).format('dddd, LL [ a las ] h:mm A')}</div>
                     </div>
                 )}
             </div>
-
-            <button onClick={logout}>Salir</button>
             <button><Link to="/adminprofile">Volver</Link></button>
         </>
     )

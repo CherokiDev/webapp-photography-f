@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 
 const Appointments = (props) => {
     const [availableDates, setAvailableDates] = useState([])
@@ -31,7 +32,7 @@ const Appointments = (props) => {
                     } else {
                         axios.get(process.env.REACT_APP_API_URL + '/dateappointments/getById/' + res.data.DateappointmentId)
                             .then((res) => {
-                                setMsg(`Tienes una cita para la fecha ${res.data.date}`)
+                                setMsg(`Tienes una cita para el ${moment(res.data.date).format('dddd, LL [ a las ] h:mm A')}`)
                             }).catch((err) => {
                                 return err
                             });
@@ -132,7 +133,7 @@ const Appointments = (props) => {
 
                     <select name="DateappointmentId" size="5" required>
                         {availableDates?.map(date =>
-                            <option key={date.id} value={date.id}>{date.date}</option>
+                            <option key={date.id} value={date.id}>{moment(date.date).format('dddd, LL [ a las ] h:mm A')}</option>
                         )}
                     </select>
                     <div></div>
