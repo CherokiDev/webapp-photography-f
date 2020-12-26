@@ -53,7 +53,7 @@ const Header = (props) => {
                 </div>
             }
             <div onClick={openModal} className="headerButtonOpenMenu">
-                    <img src={menuIconOpen} alt="" />
+                    <img src={menuIconOpen} alt="Abrir menú" />
             </div>
             
 
@@ -86,7 +86,7 @@ const Header = (props) => {
                     </div>
                 }
                 <div onClick={openModal} className="headerButtonCloseMenu">
-                    <img src={menuIconClose} alt="" />
+                    <img src={menuIconClose} alt="Cerrar menú" />
             </div>
             </Modal>
 

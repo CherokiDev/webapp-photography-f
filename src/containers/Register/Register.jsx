@@ -3,7 +3,6 @@ import React from 'react'
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { regExFullName, regExEmail, regExPassword, regExPhone } from '../../lib/regEx';
-import './Register.scss'
 
 const Register = () => {
     const history = useHistory();
@@ -81,7 +80,7 @@ const Register = () => {
 
     return (
         <>
-            <form className="registerForm" action="" onSubmit={handleSubmit}>
+            <form className="form" action="" onSubmit={handleSubmit}>
                 <h3>Creación de cuenta nueva</h3>
                 <div>Nombre:*</div>
                 <input type="text" name="firstname" placeholder="Introduce tu nombre" required />

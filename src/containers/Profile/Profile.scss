@@ -1,0 +1,48 @@
+.logout {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+
+    img {
+        cursor: pointer;
+        width: 1.5em;
+    }
+}
+
+.profileButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2em;
+
+    button {
+        all: unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0095eb;
+        margin-top: 0.7em;
+        border-radius: 0.3em;
+        border: 0;
+        font-size: 1em;
+        color: white;
+        font-family: "Roboto", sans-serif;
+        cursor: pointer;
+
+        a {
+            all: unset;
+            color: white;
+            padding: 1em;
+            
+        }
+
+    }
+}
+
+@media (max-width: 768px) {
+    .logout img {
+        width: 2em;
+    }
+}

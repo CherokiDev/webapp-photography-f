@@ -1,4 +1,4 @@
-.loginForm {
+.form {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -28,35 +28,34 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        button {
+            all: unset;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0095eb;
+            padding: 1em;
+            margin-top: 0.7em;
+            border-radius: 0.3em;
+            border: 0;
+            font-size: 1em;
+            color: white;
+            font-family: "Roboto", sans-serif;
+            cursor: pointer;
+        }
     }
 
-    button {
-        all: unset;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #0095eb;
-        padding: 1em;
-        margin-top: 0.7em;
-        width: 6em;
-        border-radius: 0.3em;
-        border: 0;
-        font-size: 1em;
-        color: white;
-        font-family: "Roboto", sans-serif;
-        cursor: pointer;
-    }
 }
 
 @media (max-width: 1024px) {
-    .loginForm {
+    .form {
         margin: 2em 10em;
     }
     
 }
 
 @media (max-width: 768px) {
-    .loginForm {
+    .form {
         margin: auto;
 
         input {
