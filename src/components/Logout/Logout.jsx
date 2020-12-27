@@ -24,7 +24,7 @@ const Logout = (props) => {
     }
 
     return (
-        <div className="logout">Bienvenid@, {props.user.firstname}.<img src={doorExit} alt="Salir" onClick={logout} /></div>
+        <div className="logout">Bienvenid@, {props.user.firstname}.<img className="quit" src={doorExit} alt="Salir" onClick={logout} /></div>
     )
 }
 

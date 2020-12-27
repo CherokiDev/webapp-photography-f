@@ -1,0 +1,59 @@
+.submenu {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.back {
+    width: 3em;
+}
+
+h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 0;
+    padding-top: 1em;
+}
+
+.deleteButton {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eb0000;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    border: 0;
+    font-size: 1em;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+}
+
+.formDatePicker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+
+    h4 {
+        margin-bottom: 3em;
+        margin-top: 0;
+    }
+
+    button {
+        margin-top: 0;
+        margin-bottom: 1em;
+        padding: 0.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .deleteButton {
+        padding: 0.3em;
+    }
+}

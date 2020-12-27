@@ -10,6 +10,7 @@ import moment from 'moment';
 import 'moment/locale/es';
 import Swal from 'sweetalert2';
 import DataTable from 'react-data-table-component';
+import back from '../../../img/return150px.png'
 moment.locale('es')
 
 const Profile = (props) => {
@@ -36,7 +37,7 @@ const Profile = (props) => {
             name: 'Fecha',
             selector: 'date',
             format: row => {
-                return moment(row.date).format('dddd, LL [ a las ] h:mm A')
+                return moment(row.date).format('dddd, L, h:mm A')
             },
             sortable: true,
             center: true,
@@ -44,7 +45,7 @@ const Profile = (props) => {
         },
         {
             name: 'Acción',
-            cell: (appointment) => <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button>
+            cell: (appointment) => <button className="deleteButton" onClick={() => deleteAppointment(appointment)}>Borrar cita</button>
 
         }
     ]
@@ -178,12 +179,17 @@ const Profile = (props) => {
 
     return (
         <>
-            <Logout />
-            <div className="tableAppointments">
+            <div className="submenu">
+                <Link to="/adminprofile">
+                    <img className="back" src={back} alt="volver" />
+                </Link>
+                <Logout />
+            </div>
+            <div>
+                <h4>Citas creadas</h4>
                 <DataTable
                     columns={columnsAppointmentCreated}
                     data={appointments}
-                    title="Citas creadas"
                     pagination
                     paginationComponentOptions={paginationOptions}
                     fixedHeader
@@ -191,32 +197,36 @@ const Profile = (props) => {
                     customStyles={customStyle}
                 />
             </div>
-
-            <div>Crear nuevas citas</div>
-            <form className="formDatePickers" action="" onSubmit={handleSubmit}>
-                <DatePicker
-                    name="date"
-                    selected={selectedDate}
-                    onChange={date => setSelectedDate(date)}
-                    showTimeSelect
-                    timeFormat="p"
-                    dateFormat="Pp"
+            <p></p>
+            <div className="formDatePicker">
+                <h4>Crear una cita nueva</h4>
+                <form action="" onSubmit={handleSubmit}>
+                    <DatePicker
+                        name="date"
+                        selected={selectedDate}
+                        onChange={date => setSelectedDate(date)}
+                        showTimeSelect
+                        timeFormat="p"
+                        dateFormat="Pp"
+                    />
+                    <div className="buttons">
+                        <button>Crear cita</button>
+                    </div>
+                </form>
+            </div>
+            <p></p>
+            <div>
+                <h4>Citas reservadas</h4>
+                <DataTable
+                    columns={columnsAllDates}
+                    data={allDates}
+                    pagination
+                    paginationComponentOptions={paginationOptions}
+                    fixedHeader
+                    fixedHeaderScrollHeight="20em"
+                    customStyles={customStyle}
                 />
-                <button>Crear cita</button>
-            </form>
-
-            <DataTable
-                columns={columnsAllDates}
-                data={allDates}
-                title="Citas reservadas"
-                pagination
-                paginationComponentOptions={paginationOptions}
-                fixedHeader
-                fixedHeaderScrollHeight="20em"
-                customStyles={customStyle}
-            />
-
-            <button><Link to="/adminprofile">Volver</Link></button>
+            </div>
         </>
     )
 }
