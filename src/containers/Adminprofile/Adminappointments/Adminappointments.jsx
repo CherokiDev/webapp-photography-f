@@ -21,7 +21,7 @@ const Profile = (props) => {
     const checkToken = props.user.token;
     /* const reserved = ("Reservada"); */
 
-    const columns = [
+    const columnsAppointmentCreated = [
         {
             name: 'ID',
             selector: 'id',
@@ -44,8 +44,44 @@ const Profile = (props) => {
         },
         {
             name: 'Acción',
-            cell:(appointment)=><button onClick={() => deleteAppointment(appointment)}>Borrar cita</button>
-            
+            cell: (appointment) => <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button>
+
+        }
+    ]
+
+    const columnsAllDates = [
+        {
+            name: 'Tipo',
+            selector: 'type',
+            sortable: true
+        },
+        {
+            name: 'Observaciones',
+            selector: 'observations'
+        },
+        {
+            name: 'Nombre',
+            selector: 'User.firstname'
+        },
+        {
+            name: 'Apellidos',
+            selector: 'User.lastname'
+        },
+        {
+            name: 'Email',
+            selector: 'User.email'
+        },
+        {
+            name: 'Teléfono',
+            selector: 'User.phone'
+        },
+        {
+            name: 'Fecha de la cita',
+            selector: 'Dateappointment.date',
+            format: row => {
+                return moment(row.Dateappointment.date).format('L, h:mm A')
+            },
+            grow: 2
         }
     ]
 
@@ -61,12 +97,12 @@ const Profile = (props) => {
             style: {
                 display: 'flex',
                 color: 'blue'
-                
+
             }
         }
     }
 
-    
+
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -143,45 +179,17 @@ const Profile = (props) => {
     return (
         <>
             <Logout />
-
             <div className="tableAppointments">
-                <DataTable 
-                    columns={columns}
+                <DataTable
+                    columns={columnsAppointmentCreated}
                     data={appointments}
                     title="Citas creadas"
                     pagination
                     paginationComponentOptions={paginationOptions}
                     fixedHeader
                     fixedHeaderScrollHeight="20em"
-                    customStyles={customStyle}               
+                    customStyles={customStyle}
                 />
-                {/* <h3>Citas creadas</h3>
-                <div>
-                    <div className="rowTitle">
-                        <div>Estado</div>
-                        <div>Fecha</div>
-                        <div>Acción</div>
-                    </div>
-                    {appointments?.map(appointment =>
-                        <div key={appointment.id} className="rows">
-                            {appointment?.status === reserved
-                                ?
-                                <>
-                                    <div className="reserved">{appointment.status}</div>
-                                    <div className="reserved">{moment(appointment.date).format('dddd, LL [ a las ] h:mm A')}</div>
-                                </>
-                                :
-                                <>
-                                    <div>{appointment.status}</div>
-                                    <div>{moment(appointment.date).format('dddd, LL [ a las ] h:mm A')}</div>
-                                </>
-                            }
-                            <div>
-                                <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button>
-                            </div>
-                        </div>
-                    )}
-                </div> */}
             </div>
 
             <div>Crear nuevas citas</div>
@@ -195,23 +203,19 @@ const Profile = (props) => {
                     dateFormat="Pp"
                 />
                 <button>Crear cita</button>
-                {/* <div>{msg}</div> */}
             </form>
-            <div>Tabla de citas reservadas</div>
-            <div>
-                {allDates?.map(date =>
-                    <div key={date.id}>
-                        <div>TIPO</div>
-                        <div>{date.type}</div>
-                        <div>OBSERVACIONES</div>
-                        <div>{date.observations}</div>
-                        <div>USUARIO</div>
-                        <div>{date.User.firstname} --- {date.User.lastname} --- {date.User.email} --- {date.User.phone}</div>
-                        <div>FECHA</div>
-                        <div>{moment(date.Dateappointment.date).format('dddd, LL [ a las ] h:mm A')}</div>
-                    </div>
-                )}
-            </div>
+
+            <DataTable
+                columns={columnsAllDates}
+                data={allDates}
+                title="Citas reservadas"
+                pagination
+                paginationComponentOptions={paginationOptions}
+                fixedHeader
+                fixedHeaderScrollHeight="20em"
+                customStyles={customStyle}
+            />
+
             <button><Link to="/adminprofile">Volver</Link></button>
         </>
     )
