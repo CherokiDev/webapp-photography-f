@@ -9,6 +9,7 @@ import './Adminappointments.scss';
 import moment from 'moment';
 import 'moment/locale/es';
 import Swal from 'sweetalert2';
+import DataTable from 'react-data-table-component';
 moment.locale('es')
 
 const Profile = (props) => {
@@ -16,8 +17,56 @@ const Profile = (props) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [msg, setMsg] = useState("");
     const [appointments, setAppointments] = useState([]);
-    const [allDates, setAllDates] = useState([])
-    const checkToken = props.user.token
+    const [allDates, setAllDates] = useState([]);
+    const checkToken = props.user.token;
+    /* const reserved = ("Reservada"); */
+
+    const columns = [
+        {
+            name: 'ID',
+            selector: 'id',
+            sortable: true
+        },
+        {
+            name: 'Estado',
+            selector: 'status',
+            sortable: true
+        },
+        {
+            name: 'Fecha',
+            selector: 'date',
+            format: row => {
+                return moment(row.date).format('dddd, LL [ a las ] h:mm A')
+            },
+            sortable: true,
+            center: true,
+            grow: 3
+        },
+        {
+            name: 'Acción',
+            cell:(appointment)=><button onClick={() => deleteAppointment(appointment)}>Borrar cita</button>
+            
+        }
+    ]
+
+    const paginationOptions = {
+        rowsPerPageText: 'Filas por página',
+        rangeSeparatorText: 'de',
+        selectAllRowsItem: true,
+        selectAllRowsItemText: 'Todos'
+    }
+
+    const customStyle = {
+        cells: {
+            style: {
+                display: 'flex',
+                color: 'blue'
+                
+            }
+        }
+    }
+
+    
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -28,7 +77,7 @@ const Profile = (props) => {
 
         axios.post(process.env.REACT_APP_API_URL + '/dateappointments/create', dateData)
             .then((res) => {
-                setMsg (`Cita número ${res.data.dateappointment.id} creada correctamente`)
+                setMsg(`Cita número ${res.data.dateappointment.id} creada correctamente`)
                 Swal.fire({
                     showConfirmButton: true,
                     icon: 'success',
@@ -94,8 +143,49 @@ const Profile = (props) => {
     return (
         <>
             <Logout />
+
+            <div className="tableAppointments">
+                <DataTable 
+                    columns={columns}
+                    data={appointments}
+                    title="Citas creadas"
+                    pagination
+                    paginationComponentOptions={paginationOptions}
+                    fixedHeader
+                    fixedHeaderScrollHeight="20em"
+                    customStyles={customStyle}               
+                />
+                {/* <h3>Citas creadas</h3>
+                <div>
+                    <div className="rowTitle">
+                        <div>Estado</div>
+                        <div>Fecha</div>
+                        <div>Acción</div>
+                    </div>
+                    {appointments?.map(appointment =>
+                        <div key={appointment.id} className="rows">
+                            {appointment?.status === reserved
+                                ?
+                                <>
+                                    <div className="reserved">{appointment.status}</div>
+                                    <div className="reserved">{moment(appointment.date).format('dddd, LL [ a las ] h:mm A')}</div>
+                                </>
+                                :
+                                <>
+                                    <div>{appointment.status}</div>
+                                    <div>{moment(appointment.date).format('dddd, LL [ a las ] h:mm A')}</div>
+                                </>
+                            }
+                            <div>
+                                <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button>
+                            </div>
+                        </div>
+                    )}
+                </div> */}
+            </div>
+
             <div>Crear nuevas citas</div>
-            <form action="" onSubmit={handleSubmit}>
+            <form className="formDatePickers" action="" onSubmit={handleSubmit}>
                 <DatePicker
                     name="date"
                     selected={selectedDate}
@@ -105,14 +195,8 @@ const Profile = (props) => {
                     dateFormat="Pp"
                 />
                 <button>Crear cita</button>
-                <div>{msg}</div>
+                {/* <div>{msg}</div> */}
             </form>
-            <div>Citas creadas</div>
-            <div>
-                {appointments?.map(appointment =>
-                    <div key={appointment.id}>{appointment.status} --- {moment(appointment.date).format('dddd, LL [ a las ] h:mm A')} <button onClick={() => deleteAppointment(appointment)}>Borrar cita</button> </div>
-                )}
-            </div>
             <div>Tabla de citas reservadas</div>
             <div>
                 {allDates?.map(date =>
