@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 import Swal from 'sweetalert2';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
+import Logout from '../../../components/Logout/Logout';
+import './Appointments.scss'
+import back from '../../../img/return150px.png'
 
 const Appointments = (props) => {
     const [availableDates, setAvailableDates] = useState([])
@@ -114,41 +117,55 @@ const Appointments = (props) => {
 
     return (
         <>
-            <div>Citas</div>
-            <div>{msg}</div>
+            <div className="submenu">
+                <Link to="/profile">
+                    <img className="back" src={back} alt="volver" />
+                </Link>
+                <Logout />
+            </div>
+
             {msg === withoutAppointment
                 ?
-                <form action="" onSubmit={handleSubmit}>
-                    <p>Formulario de citas</p>
-                    <p>Tipo</p>
-                    <select name="type" required>
-                        <option value="">Tipo de cita</option>
-                        <option value="Recién nacido">Recién nacido</option>
-                        <option value="Comunión">Comunión</option>
-                        <option value="Seguimiento">Seguimiento</option>
-                    </select>
-                    <p>Observaciones</p>
-                    <textarea name="observations" cols="30" rows="10"></textarea>
-                    <p>Citas disponibles</p>
-
-                    <select name="DateappointmentId" size="5" required>
-                        {availableDates?.map(date =>
-                            <option key={date.id} value={date.id}>{moment(date.date).format('dddd, LL [ a las ] h:mm A')}</option>
-                        )}
-                    </select>
-                    <div></div>
-                    <button type="submit">Crear cita</button>
-                </form>
+                <>
+                    <div className="divFormNewAppointment">
+                        <form className="formNewAppointment" action="" onSubmit={handleSubmit}>
+                            <h3>Reservar una cita</h3>
+                            <div>Tipo:</div>
+                            <select name="type" required>
+                                <option value="">Tipo de cita</option>
+                                <option value="Recién nacido">Recién nacido</option>
+                                <option value="Comunión">Comunión</option>
+                                <option value="Seguimiento">Seguimiento</option>
+                            </select>
+                            <div>Observaciones (edad nin@...):</div>
+                            <textarea name="observations" rows="6"></textarea>
+                            <div>Citas disponibles:</div>
+                            <select name="DateappointmentId" size="6" required>
+                                {availableDates?.map(date =>
+                                    <option key={date.id} value={date.id}>{moment(date.date).format('dddd, L, [ a las ] h:mm A')}</option>
+                                )}
+                            </select>
+                            <div className="divButton">
+                                <button>Crear cita</button>
+                            </div>
+                        </form>
+                    </div>
+                </>
                 :
                 <>
-                    <div>Solo puedes tener una cita</div>
-                    <button onClick={canceledAppointment}>Eliminar cita actual</button>
+                    <div className="divFormNewAppointment">
+                    <div className="formNewAppointment">
+                        <h3>Cita reservada</h3>
+                        <div>{msg}</div>
+                        <div>Aviso: Solo puedes tener una cita</div>
+                        <div className="divButtonDelete">
+                        <button onClick={canceledAppointment}>Eliminar cita actual</button>
+                        </div>
+                    </div>
+                    </div>
                 </>
             }
             <div></div>
-
-
-            <button><Link to="/profile">Volver</Link></button>
         </>
     )
 }
