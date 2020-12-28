@@ -133,14 +133,17 @@ const Appointments = (props) => {
                             <div>Tipo:</div>
                             <select name="type" required>
                                 <option value="">Tipo de cita</option>
-                                <option value="Recién nacido">Recién nacido</option>
                                 <option value="Comunión">Comunión</option>
+                                <option value="Embarazo">Embarazo</option>
+                                <option value="Cumpleaños">Familia</option>
+                                <option value="Recién nacido">Recién nacido</option>
                                 <option value="Seguimiento">Seguimiento</option>
                             </select>
                             <div>Observaciones (edad nin@...):</div>
                             <textarea name="observations" rows="6"></textarea>
                             <div>Citas disponibles:</div>
                             <select name="DateappointmentId" size="6" required>
+                                <option disabled value="">Elige una fecha</option>
                                 {availableDates?.map(date =>
                                     <option key={date.id} value={date.id}>{moment(date.date).format('dddd, L, [ a las ] h:mm A')}</option>
                                 )}
