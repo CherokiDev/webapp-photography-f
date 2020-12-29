@@ -10,27 +10,27 @@ import './Home.scss'
 
 const items = [
   {
-    src: 'http://drive.google.com/uc?export=view&id=1aq3VIae6SLuQalBQ1dWgkKijCTPUNcM2',
+    src: 'http://drive.google.com/uc?export=view&id=1RrfZiJLm2aVoGzULRM1wvmkJLRac8tNC',
     altText: 'Recién nacido',
     caption: 'Recién nacido'
   },
   {
-    src: 'http://drive.google.com/uc?export=view&id=1yGG0RHVDOlpMZ7tBHwQsG8W-09yteMkf',
+    src: 'http://drive.google.com/uc?export=view&id=10xjzE5ugJYMUa5ky3ZjJu7S2O_TwdUj8',
     altText: 'Embarazos',
     caption: 'Embarazos'
   },
   {
-    src: 'http://drive.google.com/uc?export=view&id=1jeco2A99wrhb9wABSTxFWqRNS5bPTmp7',
+    src: 'http://drive.google.com/uc?export=view&id=1sdDBmSVTKhhYthcUwlFog_YYk4qS0JfK',
     altText: 'Comuniones',
     caption: 'Comuniones'
   },
   {
-    src: 'http://drive.google.com/uc?export=view&id=1_orb53XqWDZYu36IzeCoFq8JA2zxDw_5',
+    src: 'http://drive.google.com/uc?export=view&id=1HrQVPN8l9RC-gaSknb4uZN0d3J2jvsUa',
     altText: 'Cumpleaños',
     caption: 'Cumpleaños'
   },
   {
-    src: 'http://drive.google.com/uc?export=view&id=1fe5P5hP6bLkmAWXXRWAD9WL-L31T7pbv',
+    src: 'http://drive.google.com/uc?export=view&id=1SR7t5Rq2iBIVMjOkU5ZirnZB7UPRGLdZ',
     altText: 'Seguimiento',
     caption: 'Seguimiento'
   }

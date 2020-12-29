@@ -1,0 +1,16 @@
+.ReactGridGallery_tile-viewport {
+    border-radius: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        
+        height: auto !important;
+    }
+}
+
+.ReactGridGallery_tile {
+    background: none !important;
+}
+
+

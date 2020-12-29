@@ -29,6 +29,8 @@
     width: 100%;
     :Link{
         text-decoration: none;
+        border-radius: 1.5em;
+        margin: 1em;
     }
 }
 
@@ -37,7 +39,6 @@
     background-color: rgb(0, 0, 0);
     width: 15em;
     height: 15em;
-    margin: 1em;
     border-radius: 1.5em;
     background-size: cover;
     background-repeat: no-repeat;
@@ -46,7 +47,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
     &:hover::before{
         background-color: transparent;
         transition: 2s;
@@ -73,23 +73,23 @@
 }
 
 .divRecienNacido {
-    background-image: url('http://drive.google.com/uc?export=view&id=1aq3VIae6SLuQalBQ1dWgkKijCTPUNcM2');
+    background-image: url('http://drive.google.com/uc?export=view&id=1uf48HoSKiQ75mm6BFdrghv9pB7dqWeOf');
 }
 
 .divEmbarazos {
-    background-image: url('http://drive.google.com/uc?export=view&id=1yGG0RHVDOlpMZ7tBHwQsG8W-09yteMkf');
+    background-image: url('http://drive.google.com/uc?export=view&id=1FfsqG2qqMA1g-X8VvPMoroFHKJrXgbDl');
 }
 
 .divComuniones {
-    background-image: url('http://drive.google.com/uc?export=view&id=1jeco2A99wrhb9wABSTxFWqRNS5bPTmp7');
+    background-image: url('http://drive.google.com/uc?export=view&id=1W04Dy3zly4_2I6qZ1mBxaxvNDuC6KBuA');
 }
 
 .divCumpleaños {
-    background-image: url('http://drive.google.com/uc?export=view&id=1_orb53XqWDZYu36IzeCoFq8JA2zxDw_5');
+    background-image: url('http://drive.google.com/uc?export=view&id=1_ae5ohQj_8ERczXijizT9JFLzyfMtcDy');
 }
 
 .divSeguimientos {
-    background-image: url('http://drive.google.com/uc?export=view&id=1fe5P5hP6bLkmAWXXRWAD9WL-L31T7pbv');
+    background-image: url('http://drive.google.com/uc?export=view&id=1jyt4gQPDStSHv_3ItA7jJMvdw3Ycis4l');
 }
 
 @media (max-width: 1400px) {
@@ -129,5 +129,9 @@
             width: 20em;
             height: 20em;
         }
+    }
+
+    .divs p {     
+        font-size: 1.8em;
     }
 }
