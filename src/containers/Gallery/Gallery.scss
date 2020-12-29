@@ -1,0 +1,133 @@
+.mainContainerGallery {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(163, 207, 240);
+    margin: 2em 15em;
+    padding-top: 1.5em;
+
+    h3 {
+        display: flex;
+        justify-content: center;
+        font-family: "Roboto", sans-serif;
+        font-size: 1.5em;
+
+    }
+
+    input {
+        padding: 0.4em;
+        border: 0;
+    }
+
+}
+
+.rows {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    :Link{
+        text-decoration: none;
+    }
+}
+
+
+.divs {
+    background-color: rgb(0, 0, 0);
+    width: 15em;
+    height: 15em;
+    margin: 1em;
+    border-radius: 1.5em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &:hover::before{
+        background-color: transparent;
+        transition: 2s;
+    }
+}
+
+.divs::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 1.5em;
+    transition: 2s;
+}
+
+.divs p {
+    color: white;
+    position: relative;
+    font-size: 1.3em;
+    font-family: cursive;
+}
+
+.divRecienNacido {
+    background-image: url('http://drive.google.com/uc?export=view&id=1aq3VIae6SLuQalBQ1dWgkKijCTPUNcM2');
+}
+
+.divEmbarazos {
+    background-image: url('http://drive.google.com/uc?export=view&id=1yGG0RHVDOlpMZ7tBHwQsG8W-09yteMkf');
+}
+
+.divComuniones {
+    background-image: url('http://drive.google.com/uc?export=view&id=1jeco2A99wrhb9wABSTxFWqRNS5bPTmp7');
+}
+
+.divCumpleaños {
+    background-image: url('http://drive.google.com/uc?export=view&id=1_orb53XqWDZYu36IzeCoFq8JA2zxDw_5');
+}
+
+.divSeguimientos {
+    background-image: url('http://drive.google.com/uc?export=view&id=1fe5P5hP6bLkmAWXXRWAD9WL-L31T7pbv');
+}
+
+@media (max-width: 1400px) {
+    .mainContainerGallery {
+        margin: 2em 12em;
+    }
+
+    .rows {
+        div {
+            width: 11em;
+            height: 11em;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .rows {
+        grid-template-columns: auto auto;
+
+        div {
+            width: 9em;
+            height: 9em;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .mainContainerGallery {
+        margin: 1em 0em;
+    }
+
+    .rows {
+        grid-template-columns: auto;
+
+        div {
+            margin: 1em 0em;
+            width: 20em;
+            height: 20em;
+        }
+    }
+}

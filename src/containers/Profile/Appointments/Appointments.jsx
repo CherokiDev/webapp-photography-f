@@ -135,7 +135,7 @@ const Appointments = (props) => {
                                 <option value="">Tipo de cita</option>
                                 <option value="Comunión">Comunión</option>
                                 <option value="Embarazo">Embarazo</option>
-                                <option value="Cumpleaños">Familia</option>
+                                <option value="Cumpleaños">Cumpleaños</option>
                                 <option value="Recién nacido">Recién nacido</option>
                                 <option value="Seguimiento">Seguimiento</option>
                             </select>

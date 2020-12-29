@@ -43,7 +43,7 @@ const Login = (props) => {
 
     return (
         <>
-            <form className="form" action="" onSubmit={handleSubmit}>
+            <form className="mainContainer" action="" onSubmit={handleSubmit}>
                 <h3>Inicio de sesión</h3>
                 <div>Correo electrónico:</div>
                 <input type="email" name="email" placeholder="Introduce tu correo electrónico" required />
