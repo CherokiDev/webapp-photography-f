@@ -11,7 +11,7 @@ const Contact = () => {
                 <h3>Contacto</h3>
                 <div className="contactText">
                     <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo aperiam porro facilis in fugiat rem doloribus animi odit, repellendus natus ipsum, dolore est voluptate itaque accusantium, laboriosam molestias accusamus recusandae!
+                        Si tienes alguna duda, ponte en contacto conmigo y estaré encantada de atenderte
                     </p>
                 </div>
 

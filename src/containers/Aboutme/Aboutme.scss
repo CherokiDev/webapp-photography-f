@@ -6,8 +6,9 @@
     background-color: rgb(163, 207, 240);
     padding: 3em 5em;
     margin: 2em 15em;
+
     h3 {
-   
+
         font-family: "Roboto", sans-serif;
 
     }
@@ -19,31 +20,60 @@
     align-items: center;
     background-color: lightgray;
     width: 100%;
-    height: 15em;
+    height: 20em;
     margin-top: 1em;
 }
 
-.photo1 {
+.aboutMePhoto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: lightcoral;
-    width: 10em;
-    height: 10em;
+    width: 15em;
+    height: 15em;
 }
 
-.text1 {
+.aboutMeText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
     background-color: lightgreen;
     width: 60%;
-    height: 10em;
+    height: 15em;
+
+    p {
+        margin: 1em;
+    }
 }
 
-.photo2 {
-    background-color: lightcoral;
-    width: 10em;
-    height: 10em;
+@media (max-width: 1400px) {
+    .aboutMeMainContainer {
+        margin: 2em 7em;
+    }
+
+    .aboutMeRows {
+        height: 25em;
+    }
 }
 
-.text2 {
-    background-color: lightgreen;
-    width: 60%;
-    height: 10em;
+@media (max-width: 1024px) {
+    .aboutMeRows {
+        flex-direction: column;
+        height: 40em;
+    }
+
+    .aboutMeText {
+        width: 100%;
+    }
 }
 
+@media (max-width: 768px) {
+    .aboutMeMainContainer {
+        margin: 2em 1em;
+    }
+
+    .aboutMeText {
+        height: 20em;
+    }
+}
