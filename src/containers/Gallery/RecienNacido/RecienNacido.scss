@@ -1,11 +1,16 @@
 .ReactGridGallery_tile-viewport {
-    border-radius: 2em;
+    border-radius: 0.5em;
     display: flex;
     justify-content: center;
     align-items: center;
+    
     img {
-        
+        transition: 1.5s;
         height: auto !important;
+        &:hover{
+            opacity: 0.6;
+            transition: 1.5s;
+        }
     }
 }
 

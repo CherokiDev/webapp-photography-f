@@ -1,0 +1,98 @@
+.contactMainContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(163, 207, 240);
+    padding: 3em 5em;
+    margin: 2em 15em;
+    h3 {
+   
+        font-family: "Roboto", sans-serif;
+
+    }
+}
+
+.contactText {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.contactDivInfo {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.contactPhone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.contactEmail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.contactAddress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.contactMap {
+    display: flex;
+    justify-content: center;
+    height: 20em;
+}
+
+.map {
+    
+    width: 99%;
+}
+
+.contactDivLinks {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.contactFollow {
+    margin-top: 1em;
+}
+
+.logoFB {
+    width: 3em;
+}
+
+.logoIG {
+    width: 3em;
+}
+
+@media (max-width: 1200px) {
+    .contactDivInfo {
+        grid-template-columns: auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .contactMainContainer {
+        margin: 2em 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .contactMainContainer {
+        margin: 2em 0em;
+        padding: 3em 2em;
+    }
+}
