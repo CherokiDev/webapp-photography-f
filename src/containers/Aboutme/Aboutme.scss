@@ -1,0 +1,49 @@
+.aboutMeMainContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(163, 207, 240);
+    padding: 3em 5em;
+    margin: 2em 15em;
+    h3 {
+   
+        font-family: "Roboto", sans-serif;
+
+    }
+}
+
+.aboutMeRows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    width: 100%;
+    height: 15em;
+    margin-top: 1em;
+}
+
+.photo1 {
+    background-color: lightcoral;
+    width: 10em;
+    height: 10em;
+}
+
+.text1 {
+    background-color: lightgreen;
+    width: 60%;
+    height: 10em;
+}
+
+.photo2 {
+    background-color: lightcoral;
+    width: 10em;
+    height: 10em;
+}
+
+.text2 {
+    background-color: lightgreen;
+    width: 60%;
+    height: 10em;
+}
+
