@@ -118,7 +118,7 @@ const IMAGES = [
 const RecienNacido = () => {
 
     return (
-        <>
+        <div className="main">
             <div className="mainContainerGallery">
                 <h3>Recién nacido</h3>
                 <div className="divGallery">
@@ -129,14 +129,13 @@ const RecienNacido = () => {
                         backdropClosesModal
                         margin={10}
                         enableImageSelection={false}
-                        // maxRows={4}
-                        // currentImage={3}
-                        // isOpen={ true}
+                    // maxRows={4}
+                    // currentImage={3}
+                    // isOpen={ true}
                     />
                 </div>
             </div>
-
-        </>
+        </div>
     )
 }
 

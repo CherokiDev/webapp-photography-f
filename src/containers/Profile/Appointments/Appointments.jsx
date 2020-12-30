@@ -116,7 +116,7 @@ const Appointments = (props) => {
     }
 
     return (
-        <>
+        <div className="main">
             <div className="submenu">
                 <Link to="/profile">
                     <img className="back" src={back} alt="volver" />
@@ -157,19 +157,19 @@ const Appointments = (props) => {
                 :
                 <>
                     <div className="divFormNewAppointment">
-                    <div className="formNewAppointment">
-                        <h3>Cita reservada</h3>
-                        <div>{msg}</div>
-                        <div>Aviso: Solo puedes tener una cita</div>
-                        <div className="divButtonDelete">
-                        <button onClick={canceledAppointment}>Eliminar cita actual</button>
+                        <div className="formNewAppointment">
+                            <h3>Cita reservada</h3>
+                            <div>{msg}</div>
+                            <div>Aviso: Solo puedes tener una cita</div>
+                            <div className="divButtonDelete">
+                                <button onClick={canceledAppointment}>Eliminar cita actual</button>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </>
             }
             <div></div>
-        </>
+        </div>
     )
 }
 

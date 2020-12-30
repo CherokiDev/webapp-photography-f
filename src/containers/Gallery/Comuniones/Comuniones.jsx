@@ -2,7 +2,9 @@ import React from 'react';
 
 const Comuniones = () => {
     return (
-        <div>Comuniones</div>
+        <div className="main">
+            <div>Comuniones</div>
+        </div>
     )
 }
 

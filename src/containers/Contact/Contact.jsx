@@ -6,7 +6,7 @@ import ig from '../../img/logoIG.png';
 
 const Contact = () => {
     return (
-        <>
+        <div className="main">
             <div className="contactMainContainer">
                 <h3>Contacto</h3>
                 <div className="contactText">
@@ -66,7 +66,7 @@ const Contact = () => {
                 </div>
 
             </div>
-        </>
+        </div>
     )
 }
 

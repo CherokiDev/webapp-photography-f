@@ -17,6 +17,7 @@ import Profile from './containers/Profile/Profile';
 import Adminprofile from './containers/Adminprofile/Adminprofile';
 import Adminappointments from './containers/Adminprofile/Adminappointments/Adminappointments'
 import Appointments from './containers/Profile/Appointments/Appointments';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/adminprofile/adminappointments" component={Adminappointments} exact />
         </ProtectedRoute>
       </Switch>
+      <Footer/>
     </BrowserRouter>
   );
 }

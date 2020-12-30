@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Gallery = () => {
     return (
-        <>
+        <div className="main">
             <div className="mainContainerGallery">
                 <h3>Galería</h3>
                 <div className="rows">
@@ -36,7 +36,7 @@ const Gallery = () => {
                     <div></div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

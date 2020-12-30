@@ -5,12 +5,12 @@ import Logout from '../../components/Logout/Logout';
 const Adminprofile = () => {
 
     return (
-        <>
+        <div className="main">
             <Logout />
             <div className="buttons">
                 <button><Link to="/adminprofile/adminappointments">Gestionar las citas</Link></button>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -2,7 +2,9 @@ import React from 'react';
 
 const Seguimientos = () => {
     return (
-        <div>Seguimientos</div>
+        <div className="main">
+            <div>Seguimientos</div>
+        </div>
     )
 }
 

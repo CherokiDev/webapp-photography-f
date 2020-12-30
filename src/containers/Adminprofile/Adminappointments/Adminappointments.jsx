@@ -178,7 +178,7 @@ const Profile = (props) => {
     }, [msg]);
 
     return (
-        <>
+        <div className="main">
             <div className="submenu">
                 <Link to="/adminprofile">
                     <img className="back" src={back} alt="volver" />
@@ -227,7 +227,7 @@ const Profile = (props) => {
                     customStyles={customStyle}
                 />
             </div>
-        </>
+        </div>
     )
 }
 

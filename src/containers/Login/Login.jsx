@@ -42,7 +42,7 @@ const Login = (props) => {
     }
 
     return (
-        <>
+        <div className="main">
             <form className="mainContainer" action="" onSubmit={handleSubmit}>
                 <h3>Inicio de sesión</h3>
                 <div>Correo electrónico:</div>
@@ -51,11 +51,11 @@ const Login = (props) => {
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 <div className="divButton">
                     <button type="submit">Iniciar sesión</button>
-                    <div>¿Todavía no tienes cuenta?</div> 
+                    <div>¿Todavía no tienes cuenta?</div>
                     <div><Link to="/register">Crear una cuenta nueva</Link></div>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 

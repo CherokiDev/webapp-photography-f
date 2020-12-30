@@ -1,5 +1,19 @@
-body {
+html, body {
     background-color: #F9D5D5;
+    height: 100%; //Para que el footer se quede abajo
+}
+
+//Para que el footer se quede abajo
+body {
+    margin: 0;
+    padding: 0;
+}
+
+//Para que el footer se quede abajo
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .header {
@@ -9,7 +23,8 @@ body {
     background-color: white;
     height: 8em;
     position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1;
 }

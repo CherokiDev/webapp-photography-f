@@ -6,12 +6,12 @@ import Logout from '../../components/Logout/Logout'
 const Profile = () => {
 
     return (
-        <>
+        <div className="main">
             <Logout />
             <div className="buttons">
                 <button><Link to="/profile/appointments">Gestionar mi cita</Link></button>
             </div>
-        </>
+        </div>
     )
 }
 

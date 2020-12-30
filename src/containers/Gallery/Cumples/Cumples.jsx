@@ -2,7 +2,9 @@ import React from 'react';
 
 const Cumples = () => {
     return (
-        <div>Cumpleaños</div>
+        <div className="main">
+            <div>Cumpleaños</div>
+        </div>
     )
 }
 
