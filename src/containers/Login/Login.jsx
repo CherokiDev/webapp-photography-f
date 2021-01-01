@@ -1,16 +1,21 @@
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types/userType';
 import Swal from 'sweetalert2';
 import './Login.scss'
+import loading from '../../img/loading.svg'
 
 
 const Login = (props) => {
     const history = useHistory();
 
-    const handleSubmit = event => {
+    const [isLoading, setIsLoading] = useState(false);
+
+    
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const userData = {
@@ -18,8 +23,10 @@ const Login = (props) => {
             password: event.target.password.value
         };
 
-        axios.post(process.env.REACT_APP_API_URL + '/users/login', userData)
+        setIsLoading(true);
+        await axios.post(process.env.REACT_APP_API_URL + '/users/login', userData)
             .then(res => {
+                setIsLoading(false)
                 props.dispatch({ type: LOGIN, payload: res.data })
                 Swal.fire({
                     showConfirmButton: false,
@@ -33,6 +40,7 @@ const Login = (props) => {
                     history.push('/')
                 }, 1500)
             }).catch(err => {
+                setIsLoading(false)
                 Swal.fire({
                     showConfirmButton: true,
                     icon: 'error',
@@ -50,7 +58,14 @@ const Login = (props) => {
                 <div>Contraseña:</div>
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 <div className="divButton">
+                    {isLoading 
+                    ?
+                    <div className="loadingImage">
+                        <img src={loading} alt=""/>
+                    </div>
+                    :
                     <button type="submit">Iniciar sesión</button>
+                }
                     <div>¿Todavía no tienes cuenta?</div>
                     <div><Link to="/register">Crear una cuenta nueva</Link></div>
                 </div>

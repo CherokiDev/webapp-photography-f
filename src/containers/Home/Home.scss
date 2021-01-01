@@ -37,6 +37,11 @@
     transition: transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
   }
+
+  .carousel-control-prev, .carousel-control-next {
+    top: 3em;
+    bottom: 3em;
+  }
   
   @media (prefers-reduced-motion: reduce) {
     .carousel-item {
