@@ -1,7 +1,7 @@
 //Para que el footer se quede abajo
 .main {
   flex: 1 0 auto;
-  margin-top: 8em;
+  margin-top: 6em;
 }
 
 .carousel {
@@ -39,8 +39,8 @@
   }
 
   .carousel-control-prev, .carousel-control-next {
-    top: 3em;
-    bottom: 3em;
+    top: 6em !important;
+    bottom: 6em !important;
   }
   
   @media (prefers-reduced-motion: reduce) {

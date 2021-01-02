@@ -2,15 +2,18 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(163, 207, 240);
-    padding: 3em 5em;
+    background-color: rgb(180, 213, 238);
+    padding: 0em 5em;
     margin: 2em 15em;
+    color: white;
 
     h3 {
         display: flex;
         justify-content: center;
-        font-family: "Roboto", sans-serif;
-
+        font-family: "parisienne";
+        font-size: 3em;
+        margin-bottom: 0.5em;
+        font-weight: lighter;
     }
 
     div {
@@ -28,6 +31,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        margin-bottom: 2em;
         button {
             all: unset;
             display: flex;
@@ -57,16 +61,23 @@
 @media (max-width: 1024px) {
     .mainContainer {
         margin: 2em 10em;
+        padding: 0em 2em;
     }
     
 }
 
 @media (max-width: 768px) {
     .mainContainer {
-        margin: auto;
+        margin: 1em 0em;
+        text-align: center;
 
         input {
             padding: 0.8em;
+        }
+
+        h3 {
+            width: 100%;
+            font-size: 2.5em;
         }
     }
 

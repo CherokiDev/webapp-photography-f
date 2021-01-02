@@ -4,6 +4,7 @@
     justify-content: center;
     flex-direction: column;
     margin-top: 2em;
+    text-align: center;
 
     button {
         all: unset;
@@ -16,14 +17,17 @@
         border: 0;
         font-size: 1em;
         height: 3em;
+        width: 12em;
         color: white;
         font-family: "Roboto", sans-serif;
         cursor: pointer;
+        text-align: center;
 
         a {
             all: unset;
             color: white;
             padding: 1em;
+            text-align: center;
             
         }
 

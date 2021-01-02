@@ -11,7 +11,7 @@ const Contact = () => {
                 <h3>Contacto</h3>
                 <div className="contactText">
                     <p>
-                        Si tienes alguna duda, ponte en contacto conmigo y estaré encantada de atenderte
+                        Si tienes alguna duda, ponte en contacto conmigo y estaré encantada de atenderte.
                     </p>
                 </div>
 
@@ -24,13 +24,13 @@ const Contact = () => {
 
                     </div>
                     <div className="contactEmail">
-                        <p><b>Email</b> <br />
+                        <p><b>Email:</b> <br />
                         elbarquitodepapelfi@gmail.com
                         </p>
                     </div>
                     <div className="contactAddress">
-                        <p><b>Dirección</b></p>
-                        <p>CL. Cristóbal Colón - Núm 17 <br />
+                        <p><b>Dirección:</b> <br/>
+                        CL. Cristóbal Colón - Núm 17 <br />
                             Puerto Serrano (Cádiz)
                         </p>
 

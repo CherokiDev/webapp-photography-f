@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { regExFullName, regExEmail, regExPassword, regExPhone } from '../../lib/regEx';
+import loading from '../../img/loading.svg';
 
 const Register = () => {
     const history = useHistory();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const userData = {
@@ -23,42 +25,44 @@ const Register = () => {
         if (!regExFullName.test(userData.firstname)) {
             Swal.fire({
                 showConfirmButton: true,
-                    icon: 'error',
-                    text: 'El formato del nombre no es válido. No puede contener números'
+                icon: 'error',
+                text: 'El formato del nombre no es válido. No puede contener números'
             })
             return;
         } else if (!regExFullName.test(userData.lastname)) {
             Swal.fire({
                 showConfirmButton: true,
-                    icon: 'error',
-                    text: 'El formato del apellido no es válido. No puede contener números'
+                icon: 'error',
+                text: 'El formato del apellido no es válido. No puede contener números'
             })
             return;
         } else if (!regExEmail.test(userData.email)) {
             Swal.fire({
                 showConfirmButton: true,
-                    icon: 'error',
-                    text: 'El formato del correo electrónico no es válido.'
+                icon: 'error',
+                text: 'El formato del correo electrónico no es válido.'
             })
             return;
         } else if (!regExPassword.test(userData.password)) {
             Swal.fire({
                 showConfirmButton: true,
-                    icon: 'error',
-                    text: 'La contraseña debe contener al menos: entre 8 y 16 caracteres, 1 número, 1 letra minúscula, 1 letra mayúscula y 1 carácter especial'
+                icon: 'error',
+                text: 'La contraseña debe contener al menos: entre 8 y 16 caracteres, 1 número, 1 letra minúscula, 1 letra mayúscula y 1 carácter especial'
             })
             return;
         } else if (!regExPhone.test(userData.phone)) {
             Swal.fire({
                 showConfirmButton: true,
-                    icon: 'error',
-                    text: 'El formato del teléfono no es válido.'
+                icon: 'error',
+                text: 'El formato del teléfono no es válido.'
             })
             return;
         }
 
-        axios.post(process.env.REACT_APP_API_URL + '/users/register', userData)
+        setIsLoading(true);
+        await axios.post(process.env.REACT_APP_API_URL + '/users/register', userData)
             .then(() => {
+                setIsLoading(false);
                 Swal.fire({
                     showConfirmButton: false,
                     timer: 3000,
@@ -70,6 +74,7 @@ const Register = () => {
                     history.push('/login')
                 }, 1500)
             }).catch(() => {
+                setIsLoading(false)
                 Swal.fire({
                     showConfirmButton: true,
                     icon: 'error',
@@ -79,9 +84,9 @@ const Register = () => {
     }
 
     return (
-        <>
+        <div className="main">
             <form className="mainContainer" action="" onSubmit={handleSubmit}>
-                <h3>Creación de cuenta nueva</h3>
+                <h3>Nueva cuenta</h3>
                 <div>Nombre:*</div>
                 <input type="text" name="firstname" placeholder="Introduce tu nombre" required />
                 <div>Apellidos:*</div>
@@ -97,10 +102,17 @@ const Register = () => {
                 <div>Ciudad:</div>
                 <input type="text" name="city" placeholder="Introduce tu ciudad" />
                 <div className="divButton">
-                    <button type="submit">Registrarse</button>
+                    {isLoading
+                        ?
+                        <div className="loadingImage">
+                            <img src={loading} alt="loading" />
+                        </div>
+                        :
+                        <button type="submit">Registrarse</button>
+                    }
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 

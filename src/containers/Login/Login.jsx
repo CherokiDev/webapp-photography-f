@@ -5,15 +5,12 @@ import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types/userType';
 import Swal from 'sweetalert2';
 import './Login.scss'
-import loading from '../../img/loading.svg'
+import loading from '../../img/loading.svg';
 
 
 const Login = (props) => {
     const history = useHistory();
-
     const [isLoading, setIsLoading] = useState(false);
-
-    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,14 +55,14 @@ const Login = (props) => {
                 <div>Contraseña:</div>
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 <div className="divButton">
-                    {isLoading 
-                    ?
-                    <div className="loadingImage">
-                        <img src={loading} alt=""/>
-                    </div>
-                    :
-                    <button type="submit">Iniciar sesión</button>
-                }
+                    {isLoading
+                        ?
+                        <div className="loadingImage">
+                            <img src={loading} alt="loading" />
+                        </div>
+                        :
+                        <button type="submit">Iniciar sesión</button>
+                    }
                     <div>¿Todavía no tienes cuenta?</div>
                     <div><Link to="/register">Crear una cuenta nueva</Link></div>
                 </div>

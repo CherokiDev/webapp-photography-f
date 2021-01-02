@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Header.scss';
-import logo from '../../img/logo1.png';
+import logo from '../../img/logo3.png';
 import menuIconOpen from '../../img/menuIconOpen.png'
 import menuIconClose from '../../img/menuIconClose.png'
 import { Modal } from 'reactstrap';

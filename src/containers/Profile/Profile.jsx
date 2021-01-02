@@ -9,6 +9,7 @@ const Profile = () => {
         <div className="main">
             <Logout />
             <div className="buttons">
+                <button><Link>Ajustes de cuenta</Link></button>
                 <button><Link to="/profile/appointments">Gestionar mi cita</Link></button>
             </div>
         </div>

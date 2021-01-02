@@ -17,13 +17,13 @@ const Aboutme = () => {
                     </div>
                 </div>
                 <div className="aboutMeRows">
+                    <div className="aboutMePhoto">
+                        photo
+                    </div>
                     <div className="aboutMeText">
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ducimus veniam esse nam laudantium, ipsum sit maiores aperiam omnis, eius molestias modi dolores quisquam neque numquam repudiandae, quas dignissimos consequuntur?
                         </p>
-                    </div>
-                    <div className="aboutMePhoto">
-                        photo
                     </div>
                 </div>
 

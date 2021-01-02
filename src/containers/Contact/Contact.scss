@@ -3,13 +3,17 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(163, 207, 240);
-    padding: 3em 5em;
+    background-color: rgb(180, 213, 238);
+    padding: 0em 5em;
     margin: 2em 15em;
+    color: white;
     h3 {
    
-        font-family: "Roboto", sans-serif;
-
+        font-family: "parisienne";
+        color: white;
+        font-size: 3em;
+        margin-bottom: 0.5em;
+        font-weight: lighter;
     }
 }
 
@@ -91,7 +95,13 @@
 
 @media (max-width: 768px) {
     .contactMainContainer {
-        margin: 2em 0em;
-        padding: 3em 2em;
+        margin: 1em 0em;
+        padding: 0em 2em;
+        text-align: center;
+
+        h3 {
+            width: 100%;
+            font-size: 2.5em;
+        }
     }
 }

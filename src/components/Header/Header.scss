@@ -1,5 +1,5 @@
 html, body {
-    background-color: #F9D5D5;
+    background-color: white;
     height: 100%; //Para que el footer se quede abajo
 }
 
@@ -20,8 +20,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: white;
-    height: 8em;
+    background-color: #F9D5D5;
+    height: 6em;
     position: -webkit-sticky;
     position: fixed;
     width: 100%;
@@ -36,7 +36,7 @@ body {
     justify-content: center;
     align-items: center;
         img {
-            width: 7em;
+            width: 5em;
         }
 }
 
@@ -99,7 +99,7 @@ body {
     display: flex;
     position: fixed;
     right: 2em;
-    top: 2.8em;
+    top: 1.8em;
     width: 2.5em;
     height: 2.5em;
     display: flex;

@@ -1,17 +1,23 @@
+@font-face {
+    font-family: "parisienne";
+    src: url("../../font/Parisienne-Regular.ttf");
+}
+
 .mainContainerGallery {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(163, 207, 240);
+    background-color: rgb(180, 213, 238);
     margin: 2em 15em;
-    padding-top: 1.5em;
 
     h3 {
         display: flex;
         justify-content: center;
-        font-family: "Roboto", sans-serif;
-        font-size: 1.5em;
-
+        font-family: "parisienne";
+        font-size: 3em;
+        color: white;
+        margin-bottom: 0.5em;   
+        font-weight: lighter;     
     }
 
     input {
@@ -119,6 +125,11 @@
 @media (max-width: 768px) {
     .mainContainerGallery {
         margin: 1em 0em;
+
+        h3 {
+            width: 100%;
+            font-size: 2.5em;
+        }
     }
 
     .rows {
