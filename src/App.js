@@ -14,9 +14,10 @@ import Login from './containers/Login/Login';
 import Register from './containers/Register/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './containers/Profile/Profile';
+import Account from './containers/Profile/Account/Account';
+import Appointments from './containers/Profile/Appointments/Appointments';
 import Adminprofile from './containers/Adminprofile/Adminprofile';
 import Adminappointments from './containers/Adminprofile/Adminappointments/Adminappointments'
-import Appointments from './containers/Profile/Appointments/Appointments';
 import Footer from './components/Footer/Footer';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="/register" component={Register} exact />
         <ProtectedRoute>
           <Route path="/profile" component={Profile} exact />
+          <Route path="/profile/account" component={Account} exact />
           <Route path="/profile/appointments" component={Appointments} exact />
           <Route path="/adminprofile"component={Adminprofile} exact />
           <Route path="/adminprofile/adminappointments" component={Adminappointments} exact />
