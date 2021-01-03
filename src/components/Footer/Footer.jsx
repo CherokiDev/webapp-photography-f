@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             <div className="divFooter">
-                <h5>Todos los derechos reservados</h5>
+                <h5>Hecha por <a target="_blank" rel="noreferrer" href="https://github.com/Cheroki84">Miguel Ángel Morato</a></h5>
             </div>
         </>
     )

@@ -248,16 +248,39 @@
     white-space: normal;
   }
 
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 2em;
+    color: rgb(180, 213, 238);
+  }
+
+  .mainTitle {
+    font-family: "parisienne";
+    margin-bottom: 0;
+  }
+
+  .subTitle {
+    font-family: "parisienne";
+    margin-top: 0;
+  }
+
   @media (max-width: 768px) {
     .carousel-item {
-      height: 20em;
+      height: 19em;
       transform: scale(2);
       img {
-        margin-top: 4.8em;
+        margin-top: 4.6em;
       }
     }
 
     .carousel-indicators {
       display: none;
       }
+
+    .title {
+      font-size: 1em;
+    }
 }

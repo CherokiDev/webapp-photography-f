@@ -82,6 +82,14 @@ const Home = (props) => {
                 <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
                 <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
             </Carousel>
+            <div className="title">
+                <h1 className="mainTitle">
+                    El Barquito de Papel
+            </h1>
+                <h2 className="subTitle">
+                    - fotografía infantil -
+            </h2>
+            </div>
         </div>
     );
 }
