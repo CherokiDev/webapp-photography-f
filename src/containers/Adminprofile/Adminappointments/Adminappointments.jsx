@@ -103,8 +103,6 @@ const Profile = (props) => {
         }
     }
 
-
-
     const handleSubmit = event => {
         event.preventDefault();
 
@@ -152,7 +150,6 @@ const Profile = (props) => {
         getAll()
         // eslint-disable-next-line
     }, [msg])
-
 
     const deleteAppointment = async (appointment) => {
         if (appointment.status === "Reservada") {

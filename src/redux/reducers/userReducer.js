@@ -1,6 +1,9 @@
-const { LOGIN, LOGOUT } = require('../types/userType');
+const { LOGIN, LOGOUT, ALLUSERS } = require('../types/userType');
 
-const initialState = { user: {} };
+const initialState = {
+    user: {},
+    users: {}
+};
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -14,8 +17,13 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload
             };
-        default:
-            return state;
+        case ALLUSERS:
+            return {
+                ...state,
+                users: action.payload
+            }
+            default:
+                return state;
     }
 }
 
