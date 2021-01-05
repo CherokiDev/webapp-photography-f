@@ -8,7 +8,7 @@
 
 ---
 
-## What is? 🤔
+## About this 🤔
 Its main feature is that it allows our clients to make appointments on their own through the webapp itself. Moreover it is responsive, which means total accesibility and functionality regardless of which device we use.
 > Note: This repository is the frontend of the application.
 > Backend is here: [repository](https://github.com/Cheroki84/webapp-photography-b)

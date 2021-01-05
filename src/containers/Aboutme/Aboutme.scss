@@ -6,6 +6,7 @@
     background-color: rgb(180, 213, 238);
     padding: 0em 5em;
     margin: 2em 15em;
+    padding-bottom: 5em;
 
     h3 {
 
@@ -14,6 +15,7 @@
         font-size: 3em;
         margin-bottom: 0.5em;
         font-weight: lighter;
+        margin-bottom: 0;
     }
 }
 
@@ -21,7 +23,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
     width: 100%;
     height: 20em;
     margin-top: 1em;
@@ -31,9 +32,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightcoral;
     width: 15em;
-    height: 15em;
+    height: 20em;
+}
+
+.photo {
+    width: 15em;
+    box-shadow: 0em 0em 0.5em 0.3em;
 }
 
 .aboutMeText {
@@ -41,9 +46,10 @@
     justify-content: center;
     align-items: center;
     text-align: justify;
-    background-color: lightgreen;
-    width: 60%;
-    height: 15em;
+    flex-direction: column;
+    width: 50%;
+    padding: 0em 3em;
+    height: 20em;
 
     p {
         margin: 1em;
@@ -74,16 +80,24 @@
 @media (max-width: 768px) {
     .aboutMeMainContainer {
         margin: 1em 0em;
-        padding: 0em 2em;
+        padding: 0em 0em;
         text-align: center;
+        padding-bottom: 6em;
 
         h3 {
             width: 100%;
-            font-size: 2.5em
+            font-size: 2.5em;
+            margin-bottom: 1em;
         }
     }
 
     .aboutMeText {
-        height: 20em;
+        padding: 0;
+        margin: 2em;
+        height: auto;
+    }
+
+    .divEmpty {
+        height: 2em;
     }
 }
