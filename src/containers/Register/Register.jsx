@@ -4,10 +4,14 @@ import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { regExFullName, regExEmail, regExPassword, regExPhone } from '../../lib/regEx';
 import loading from '../../img/loading.svg';
+import './Register.scss'
 
 const Register = () => {
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -83,6 +87,16 @@ const Register = () => {
             });
     }
 
+    const checkValidation = (e) => {
+        const confirmPass = e.target.value;
+        setConfirmPassword(confirmPass)
+        if (password !== confirmPass) {
+            setIsError("La contraseña no coincide");
+        } else {
+            setIsError("");
+        }
+    }
+
     return (
         <div className="main">
             <form className="mainContainer" action="" onSubmit={handleSubmit}>
@@ -94,7 +108,10 @@ const Register = () => {
                 <div>Correo electrónico:*</div>
                 <input type="email" name="email" placeholder="Introduce tu email" required />
                 <div>Contraseña:*</div>
-                <input type="password" name="password" placeholder="Introduce tu password" required />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" placeholder="Introduce tu contraseña" required />
+                <div>Confirmar contraseña:*</div>
+                <input type="password" value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" placeholder="Confirma tu contraseña" required />
+                <div className="confirmPassword">{isError}</div>
                 <div>Teléfono:*</div>
                 <input type="text" name="phone" placeholder="Introduce tu teléfono" required />
                 <div>Código postal:</div>
