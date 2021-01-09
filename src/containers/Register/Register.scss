@@ -1,3 +1,28 @@
+.divPassword {
+    margin-bottom: -0.6em;
+}
+
+.containerPassword {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        all: unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0095eb;
+        padding: 0em 0.5em;
+        color: white;
+        font-family: "Roboto", sans-serif;
+        cursor: pointer;
+    }
+}
+
 .confirmPassword {
     color: red;
 }

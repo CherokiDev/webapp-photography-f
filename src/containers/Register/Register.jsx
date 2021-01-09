@@ -12,6 +12,7 @@ const Register = () => {
     const [isError, setIsError] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -97,6 +98,10 @@ const Register = () => {
         }
     }
 
+    const switchShowPassword = () => {
+        setShowPassword(!showPassword);
+    }
+
     return (
         <div className="main">
             <form className="mainContainer" action="" onSubmit={handleSubmit}>
@@ -107,10 +112,13 @@ const Register = () => {
                 <input type="text" name="lastname" placeholder="Introduce tus apellidos" required />
                 <div>Correo electrónico:*</div>
                 <input type="email" name="email" placeholder="Introduce tu email" required />
-                <div>Contraseña:*</div>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" placeholder="Introduce tu contraseña" required />
+                <div className="divPassword">Contraseña:*</div>
+                <div className="containerPassword">
+                    <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} name="password" placeholder="Introduce tu contraseña" required />
+                    <button onClick={switchShowPassword}>{showPassword ? "Ocultar" : "Mostrar"}</button>
+                </div>
                 <div>Confirmar contraseña:*</div>
-                <input type="password" value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" placeholder="Confirma tu contraseña" required />
+                <input type="password" value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" placeholder="Confirma la contraseña" required />
                 <div className="confirmPassword">{isError}</div>
                 <div>Teléfono:*</div>
                 <input type="text" name="phone" placeholder="Introduce tu teléfono" required />
