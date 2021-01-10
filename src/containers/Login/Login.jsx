@@ -41,7 +41,7 @@ const Login = (props) => {
                 Swal.fire({
                     showConfirmButton: true,
                     icon: 'error',
-                    text: 'Ha habido un error al intentar iniciar sesión'
+                    text: 'Ha habido un error. Puede ser que hayas introducido mal algún dato, o que todavía no hayas creado una cuenta.'
                 })
             });
     }

@@ -20,11 +20,12 @@ import Adminprofile from './containers/Adminprofile/Adminprofile';
 import Adminappointments from './containers/Adminprofile/Adminappointments/Adminappointments'
 import Adminusers from './containers/Adminprofile/Adminusers/Adminusers';
 import Footer from './components/Footer/Footer';
+import AppWhatsapp from './components/AppWhatsapp/AppWhatsapp';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header/>
+      <Header />
       <Switch>
         <Route path="/" component={Home} exact/>
         <Route path="/gallery" component={Gallery} exact />
@@ -46,7 +47,8 @@ function App() {
           <Route path="/adminprofile/adminusers" component={Adminusers} exact />
         </ProtectedRoute>
       </Switch>
-      <Footer/>
+      <AppWhatsapp />
+      <Footer />
     </BrowserRouter>
   );
 }
