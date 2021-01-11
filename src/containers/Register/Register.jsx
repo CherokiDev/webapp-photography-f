@@ -52,7 +52,7 @@ const Register = () => {
             Swal.fire({
                 showConfirmButton: true,
                 icon: 'error',
-                text: 'La contraseña debe contener al menos: entre 8 y 16 caracteres, 1 número, 1 letra minúscula, 1 letra mayúscula y 1 carácter especial'
+                text: 'La contraseña debe contener al menos: entre 8 y 16 caracteres, 1 número, 1 letra minúscula, 1 letra mayúscula y 1 carácter especial como #, @, %.'
             })
             return;
         } else if (!regExPhone.test(userData.phone)) {
