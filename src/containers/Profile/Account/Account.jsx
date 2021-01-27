@@ -111,7 +111,7 @@ const Account = (props) => {
                 <div>Correo electrónico:*</div>
                 <input type="email" name="email" defaultValue={props.user.email} required />
                 <div>Contraseña:*</div>
-                <input type="password" name="password" placeholder="Introduce una contraseña" required />
+                <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 <div>Teléfono:*</div>
                 <input type="text" name="phone" defaultValue={props.user.phone} required />
                 <div>Código postal:</div>
