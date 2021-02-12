@@ -21,6 +21,7 @@ import Adminappointments from './containers/Adminprofile/Adminappointments/Admin
 import Adminusers from './containers/Adminprofile/Adminusers/Adminusers';
 import Footer from './components/Footer/Footer';
 import AppWhatsapp from './components/AppWhatsapp/AppWhatsapp';
+import ForgotPassword from './containers/ForgotPassword/ForgotPassword';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/contact" component={Contact} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />
+        <Route path="/forgotpassword" component={ForgotPassword} exact />
         <ProtectedRoute>
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/account" component={Account} exact />
