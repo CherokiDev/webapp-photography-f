@@ -22,6 +22,7 @@ import Adminusers from './containers/Adminprofile/Adminusers/Adminusers';
 import Footer from './components/Footer/Footer';
 import AppWhatsapp from './components/AppWhatsapp/AppWhatsapp';
 import ForgotPassword from './containers/ForgotPassword/ForgotPassword';
+import ResetPassword from './containers/ResetPassword/ResetPassword';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />
         <Route path="/forgotpassword" component={ForgotPassword} exact />
+        <Route path="/resetpassword/:id/:tokenresetpassword" component={ResetPassword} />
         <ProtectedRoute>
           <Route path="/profile" component={Profile} exact />
           <Route path="/profile/account" component={Account} exact />
