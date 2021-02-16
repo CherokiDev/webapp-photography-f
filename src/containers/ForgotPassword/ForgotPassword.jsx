@@ -27,9 +27,8 @@ const ForgorPassword = () => {
                 Swal.fire({
                     showConfirmButton: true,
                     icon: 'error',
-                    text: 'Ha habido un error al intentar enviar los datos, vuelve a intentarlo más tarde'
+                    text: 'Ha habido un error al intentar enviar los datos, comprueba el correo introducido o vuelva a intentarlo más tarde'
                 })
-                console.log(err)
             });
     }
 

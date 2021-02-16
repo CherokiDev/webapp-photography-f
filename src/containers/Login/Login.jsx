@@ -51,7 +51,7 @@ const Login = (props) => {
             <form className="mainContainer" action="" onSubmit={handleSubmit}>
                 <h3>Inicio de sesión</h3>
                 <div>Correo electrónico:</div>
-                <input type="email" name="email" placeholder="Introduce tu correo electrónico" required />
+                <input type="email" name="email" placeholder="Introduce tu email" required />
                 <div>Contraseña:</div>
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 <div className="divButton">
@@ -65,6 +65,7 @@ const Login = (props) => {
                     }
                     <div>¿Todavía no tienes cuenta?</div>
                     <div><Link to="/register">Crear una cuenta nueva</Link></div>
+                    <br/>
                     <div>¿Has olvidado tu contraseña? <Link to="/forgotpassword">Pulsa aquí</Link></div>
                 </div>
             </form>
