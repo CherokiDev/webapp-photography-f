@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import loading from '../../img/loading.svg';
 import Swal from 'sweetalert2';
 import { regExPassword } from '../../lib/regEx';
 
 const ResetPassword = (props) => {
+    const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState("");
     const [password, setPassword] = useState("");
@@ -41,6 +43,7 @@ const ResetPassword = (props) => {
                     icon: 'success',
                     text: 'Contraseña cambiada correctamente'
                 })
+                history.pushState('/login')
             }).catch((err) => {
                 Swal.fire({
                     showConfirmButton: true,
