@@ -43,7 +43,7 @@ const ResetPassword = (props) => {
                     icon: 'success',
                     text: 'Contraseña cambiada correctamente'
                 })
-                history.pushState('/login')
+                history.push('/login')
             }).catch((err) => {
                 Swal.fire({
                     showConfirmButton: true,
