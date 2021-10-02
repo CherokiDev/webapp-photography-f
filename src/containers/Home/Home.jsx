@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Carousel,
     CarouselItem,
@@ -7,6 +7,8 @@ import {
     CarouselCaption
 } from 'reactstrap';
 import './Home.scss'
+import db from '../../utils/firebaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
 
 const items = [
     {
@@ -36,7 +38,18 @@ const items = [
     }
 ];
 
-const Home = (props) => {
+const Home = () => {
+
+    useEffect(() => {
+        const getData = async() => {
+            const data = await getDocs(collection(db, 'users'));
+            data.forEach((doc) => {
+                console.log(doc.data());
+            })
+        }
+        getData()
+    }, [])
+
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
 
@@ -65,7 +78,7 @@ const Home = (props) => {
                 key={item.src}
             >
                 <img src={item.src} alt={item.altText} width="100%" />
-                <CarouselCaption /* captionText={item.caption} */ captionHeader={item.caption} />
+                <CarouselCaption captionHeader={item.caption} />
             </CarouselItem>
         );
     });

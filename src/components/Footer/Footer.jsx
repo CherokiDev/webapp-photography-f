@@ -21,7 +21,7 @@ const Footer = () => {
             </div>
             <div className="centerFooter">
                 <p>
-                    © 2020-2021 El Barquito de Papel - Fotografía Infantil
+                    © 2020-{new Date().getFullYear()} El Barquito de Papel - Fotografía Infantil
                 </p>
             </div>
             <div className="rightFooter">
