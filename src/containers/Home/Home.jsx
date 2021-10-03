@@ -7,7 +7,7 @@ import {
     CarouselCaption
 } from 'reactstrap';
 import './Home.scss'
-import db from '../../utils/firebaseConfig';
+import { db } from '../../utils/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 
 const items = [
@@ -41,7 +41,7 @@ const items = [
 const Home = () => {
 
     useEffect(() => {
-        const getData = async() => {
+        const getData = async () => {
             const data = await getDocs(collection(db, 'users'));
             data.forEach((doc) => {
                 console.log(doc.data());
@@ -98,10 +98,10 @@ const Home = () => {
             <div className="title">
                 <h1 className="mainTitle">
                     El Barquito de Papel
-            </h1>
+                </h1>
                 <h2 className="subTitle">
                     - fotografía infantil -
-            </h2>
+                </h2>
             </div>
         </div>
     );

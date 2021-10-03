@@ -1,8 +1,8 @@
 const { LOGIN, LOGOUT, ALLUSERS } = require('../types/userType');
 
 const initialState = {
-    user: {},
-    users: {}
+    uid: {},
+    name: {}
 };
 
 const userReducer = (state = initialState, action) => {
@@ -10,12 +10,13 @@ const userReducer = (state = initialState, action) => {
         case LOGIN:
             return {
                 ...state,
-                user: action.payload
+                uid: action.payload.uid,
+                name: action.payload.displayName
             };
         case LOGOUT:
             return {
                 ...state,
-                user: action.payload
+                initialState
             };
         case ALLUSERS:
             return {
