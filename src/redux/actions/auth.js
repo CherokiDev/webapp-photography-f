@@ -1,26 +1,64 @@
 import {
-    LOGIN
+    LOGIN,
+    REGISTER
 } from "../types/userType";
-import {signInWithPopup, getAuth} from 'firebase/auth';
-import { googleAuthProvider } from "../../utils/firebaseConfig";
+import {
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile
+} from 'firebase/auth';
+import {
+    googleAuthProvider
+} from "../../utils/firebaseConfig";
+
+const auth = getAuth()
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
-        setTimeout(() => {
-            dispatch(login(123,'juan'))
-        }, 3000);
+        signInWithEmailAndPassword(auth, email, password)
+            .then(({
+                user
+            }) => {
+                dispatch(
+                    login(user.uid, user.displayName)
+                )
+            })
+            .catch(e => console.log(e))
+
+    }
+}
+
+export const registerWithNameEmailPassword = (name, email, password) => {
+    return (dispatch) => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(async ({
+                user
+            }) => {
+                await updateProfile(auth.currentUser, {
+                    displayName: name
+                })
+
+                // console.log(user)
+                dispatch(
+                    login(user.uid, user.displayName)
+                )
+            })
+            .catch(e => console.log(e))
     }
 }
 
 export const startGoogleLogin = () => {
-    const auth = getAuth()
-    return(dispatch) => {
+    return (dispatch) => {
         signInWithPopup(auth, googleAuthProvider)
-        .then(({user}) => {
-            dispatch(
-                login(user.uid, user.displayName)
-            )
-        })
+            .then(({
+                user
+            }) => {
+                dispatch(
+                    login(user.uid, user.displayName)
+                )
+            })
     }
 }
 
@@ -31,3 +69,12 @@ export const login = (uid, displayName) => ({
         displayName
     }
 })
+
+// export const register = (uid, displayName, phone) => ({
+//     type: REGISTER,
+//     payload: {
+//         uid,
+//         displayName,
+//         phone
+//     }
+// })

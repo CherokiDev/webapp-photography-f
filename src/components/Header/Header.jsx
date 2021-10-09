@@ -96,7 +96,7 @@ const Header = (props) => {
 
 const mapStateToProps = state => {
     return {
-        user: state.userReducer.user
+        user: state.user.user
     }
 }
 
