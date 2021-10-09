@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types/userType';
 import Swal from 'sweetalert2';
@@ -11,6 +11,7 @@ import { startGoogleLogin, startLoginEmailPassword } from '../../redux/actions/a
 
 const Login = (props) => {
     const dispatch = useDispatch();
+    const { loading } = useSelector(state => state.ui)
     const history = useHistory();
     const [isLoading, setIsLoading] = React.useState(false);
 
@@ -61,24 +62,25 @@ const Login = (props) => {
                 <input type="email" name="email" placeholder="Introduce tu email" required />
                 <div>Contraseña:</div>
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
-                <div className="divButton">
-                    {isLoading
-                        ?
-                        <div className="loadingImage">
-                            <img src={loading} alt="loading" />
-                        </div>
-                        :
-                        <button type="submit">Iniciar sesión</button>
-                    }
+                {/* <div className="divButton"> */}
+             
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            >Iniciar sesión                            
+                        </button>
+                    
                     <div>¿Todavía no tienes cuenta?</div>
                     <div><Link to="/register">Crear una cuenta nueva</Link></div>
                     <br />
                     <div>¿Has olvidado tu contraseña? <Link to="/forgotpassword">Pulsa aquí</Link></div>
-                </div>
+                {/* </div> */}
             </form>
 
             <div>
-                <button onClick={handleGoogleLogin}>
+                <button 
+                disabled={loading}
+                onClick={handleGoogleLogin}>
                     Iniciar sesión con Google
                 </button>
             </div>

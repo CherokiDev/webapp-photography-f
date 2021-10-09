@@ -1,4 +1,8 @@
-const { LOGIN, LOGOUT, ALLUSERS } = require('../types/userType');
+const {
+    LOGIN,
+    LOGOUT,
+    ALLUSERS
+} = require('../types/userType');
 
 const initialState = {
     uid: {},

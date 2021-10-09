@@ -12,20 +12,27 @@ import {
 import {
     googleAuthProvider
 } from "../../utils/firebaseConfig";
+import {
+    finishLoading,
+    startLoading
+} from "./ui";
 
 const auth = getAuth()
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
+        dispatch(startLoading());
+
         signInWithEmailAndPassword(auth, email, password)
-            .then(({
-                user
-            }) => {
-                dispatch(
-                    login(user.uid, user.displayName)
-                )
+            .then(({ user }) => {
+                dispatch(login(user.uid, user.displayName))
+
+                dispatch(finishLoading())
             })
-            .catch(e => console.log(e))
+            .catch(e => {
+                console.log(e)
+                dispatch(finishLoading())
+            })
 
     }
 }
