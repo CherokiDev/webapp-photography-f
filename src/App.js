@@ -1,3 +1,7 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { login } from './redux/actions/auth';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
@@ -25,6 +29,19 @@ import ForgotPassword from './containers/ForgotPassword/ForgotPassword';
 import ResetPassword from './containers/ResetPassword/ResetPassword';
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const auth =  getAuth()
+    onAuthStateChanged(auth, (user) => {
+
+      if(user?.uid) {
+        dispatch(login(user.uid, user.displayName));
+      }
+      
+    })
+  }, [dispatch])
+
   return (
     <BrowserRouter>
       <Header />
