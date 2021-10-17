@@ -1,5 +1,6 @@
 import {
     LOGIN,
+    LOGOUT,
     REGISTER
 } from "../types/userType";
 import {
@@ -7,7 +8,8 @@ import {
     signInWithPopup,
     getAuth,
     createUserWithEmailAndPassword,
-    updateProfile
+    updateProfile,
+    signOut
 } from 'firebase/auth';
 import {
     googleAuthProvider
@@ -75,6 +77,20 @@ export const login = (uid, displayName) => ({
         uid,
         displayName
     }
+})
+
+export const startLogout = () => {
+    return (dispatch) => {
+        signOut(auth)
+        .then(() => {
+            dispatch(logout());
+        })
+        .catch((err) => err)
+    }
+}
+
+export const logout = () => ({
+    type: LOGOUT
 })
 
 // export const register = (uid, displayName, phone) => ({

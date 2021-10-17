@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { login } from './redux/actions/auth';
@@ -31,16 +31,31 @@ import ResetPassword from './containers/ResetPassword/ResetPassword';
 function App() {
   const dispatch = useDispatch();
 
+  const [checking, setChecking] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   React.useEffect(() => {
     const auth =  getAuth()
     onAuthStateChanged(auth, (user) => {
 
       if(user?.uid) {
         dispatch(login(user.uid, user.displayName));
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
       }
+
+      setChecking(false);
+
       
     })
-  }, [dispatch])
+  }, [dispatch, setChecking, setIsLoggedIn])
+
+  if(checking) {
+    return (
+      <h1>Cargando usuario...</h1>
+    )    
+  }
 
   return (
     <BrowserRouter>
@@ -59,8 +74,8 @@ function App() {
         <Route path="/register" component={Register} exact />
         <Route path="/forgotpassword" component={ForgotPassword} exact />
         <Route path="/resetpassword/:id/:tokenresetpassword" component={ResetPassword} />
+        <Route path="/profile" component={Profile} exact />
         <ProtectedRoute>
-          <Route path="/profile" component={Profile} exact />
           <Route path="/profile/account" component={Account} exact />
           <Route path="/profile/appointments" component={Appointments} exact />
           <Route path="/adminprofile"component={Adminprofile} exact />
