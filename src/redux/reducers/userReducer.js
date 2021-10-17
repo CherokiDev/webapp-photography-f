@@ -5,8 +5,7 @@ const {
 } = require('../types/userType');
 
 const initialState = {
-    uid: {},
-    name: {}
+ 
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,8 +18,7 @@ const userReducer = (state = initialState, action) => {
             };
         case LOGOUT:
             return {
-                uid: {},
-                name: {}
+
             };
         case ALLUSERS:
             return {

@@ -73,12 +73,12 @@ function App() {
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />
         <Route path="/forgotpassword" component={ForgotPassword} exact />
-        <Route path="/resetpassword/:id/:tokenresetpassword" component={ResetPassword} />
-        <Route path="/profile" component={Profile} exact />
+        {/* <Route path="/resetpassword/:id/:tokenresetpassword" component={ResetPassword} exact /> */}
         <ProtectedRoute>
+          <Route path="/profile" component={Profile} exact />
           <Route path="/profile/account" component={Account} exact />
           <Route path="/profile/appointments" component={Appointments} exact />
-          <Route path="/adminprofile"component={Adminprofile} exact />
+          <Route path="/adminprofile" component={Adminprofile} exact />
           <Route path="/adminprofile/adminappointments" component={Adminappointments} exact />
           <Route path="/adminprofile/adminusers" component={Adminusers} exact />
         </ProtectedRoute>

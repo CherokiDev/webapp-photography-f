@@ -3,12 +3,12 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ProtectedRoute = (props) => {
-    return props.user?.token ? props.children : <Redirect to='/login' />
+    return props.user?.uid ? props.children : <Redirect to='/login' />
 }
 
 const mapStateToProps = state => {
     return {
-        user: state.userReducer
+        user: state.user
     }
 }
 
