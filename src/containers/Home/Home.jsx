@@ -85,7 +85,7 @@ const Home = () => {
 
     return (
         <div className="main">
-            <Carousel
+            {/* <Carousel
                 activeIndex={activeIndex}
                 next={next}
                 previous={previous}
@@ -94,7 +94,7 @@ const Home = () => {
                 {slides}
                 <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
                 <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-            </Carousel>
+            </Carousel> */}
             <div className="title">
                 <h1 className="mainTitle">
                     El Barquito de Papel

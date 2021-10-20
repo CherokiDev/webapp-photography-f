@@ -63,27 +63,24 @@ const Login = (props) => {
                 <div>Contraseña:</div>
                 <input type="password" name="password" placeholder="Introduce tu contraseña" required />
                 {/* <div className="divButton"> */}
-             
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            >Iniciar sesión                            
-                        </button>
-                    
-                    <div>¿Todavía no tienes cuenta?</div>
-                    <div><Link to="/register">Crear una cuenta nueva</Link></div>
-                    <br />
-                    <div>¿Has olvidado tu contraseña? <Link to="/forgotpassword">Pulsa aquí</Link></div>
-                {/* </div> */}
-            </form>
 
-            <div>
-                <button 
-                disabled={loading}
-                onClick={handleGoogleLogin}>
+                <button
+                    type="submit"
+                    disabled={loading}
+                >Iniciar sesión
+                </button>
+                <button
+                    disabled={loading}
+                    onClick={handleGoogleLogin}>
                     Iniciar sesión con Google
                 </button>
-            </div>
+
+                <div>¿Todavía no tienes cuenta?</div>
+                <div><Link to="/register">Crear una cuenta nueva</Link></div>
+                <br />
+                <div>¿Has olvidado tu contraseña? <Link to="/forgotpassword">Pulsa aquí</Link></div>
+                {/* </div> */}
+            </form>
         </div>
     )
 }
