@@ -78,7 +78,7 @@ const Login = (props) => {
                 <div>¿Todavía no tienes cuenta?</div>
                 <div><Link to="/register">Crear una cuenta nueva</Link></div>
                 <br />
-                <div>¿Has olvidado tu contraseña? <Link to="/forgotpassword">Pulsa aquí</Link></div>
+                {/* <div>¿Has olvidado tu contraseña? <Link to="/forgotpassword">Pulsa aquí</Link></div> */}
                 {/* </div> */}
             </form>
         </div>
