@@ -111,7 +111,7 @@ const Register = () => {
     return (
         <div className="main">
             <form className="mainContainer" action="" onSubmit={handleSubmit}>
-                <h3>Crear nueva cuenta</h3>
+                <h3>Crear cuenta nueva</h3>
                 <div>Nombre:*</div>
                 <input type="text" name="firstname" placeholder="Introduce tu nombre" required />
                 {/* <div>Apellidos:*</div>

@@ -5,11 +5,11 @@ import {
 } from "../types/userType";
 import {
     signInWithEmailAndPassword,
-    signInWithPopup,
     getAuth,
     createUserWithEmailAndPassword,
     updateProfile,
-    signOut
+    signOut,
+    signInWithRedirect
 } from 'firebase/auth';
 import {
     googleAuthProvider
@@ -60,7 +60,7 @@ export const registerWithNameEmailPassword = (name, email, password) => {
 
 export const startGoogleLogin = () => {
     return (dispatch) => {
-        signInWithPopup(auth, googleAuthProvider)
+        signInWithRedirect(auth, googleAuthProvider)
             .then(({
                 user
             }) => {
