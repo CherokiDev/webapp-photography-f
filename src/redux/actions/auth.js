@@ -1,29 +1,17 @@
 import {
     LOGIN,
-    LOGOUT,
-    REGISTER
+    LOGOUT
 } from "../types/userType";
 import {
-    signInWithEmailAndPassword,
     getAuth,
     createUserWithEmailAndPassword,
     updateProfile,
-    signOut,
-    signInWithRedirect,
-    signInWithPopup
+    signOut
 } from 'firebase/auth';
-import {
-    googleAuthProvider
-} from "../../utils/firebaseConfig";
-import {
-    finishLoading,
-    startLoading
-} from "./ui";
-import Swal from "sweetalert2";
-import { Redirect } from "react-router";
-import { Router, Route } from 'react-router-dom'
-import history from "../../lib/history";
-import Profile from "../../containers/Profile/Profile";
+// cheroki - no entiendo por qué, pero si elimino este import, salta un error de firebase,
+// a pesar de que no se está usando en ningún sitio
+import { googleAuthProvider } from "../../utils/firebaseConfig";
+
 
 const auth = getAuth();
 

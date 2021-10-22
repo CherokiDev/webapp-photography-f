@@ -9,9 +9,9 @@ import './Login.scss'
 import loading from '../../img/loading.svg';
 import { login, startGoogleLogin, startLoginEmailPassword } from '../../redux/actions/auth';
 import Profile from '../Profile/Profile';
+import { finishLoading, startLoading } from '../../redux/actions/ui';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from '@firebase/auth';
 import { googleAuthProvider } from '../../utils/firebaseConfig';
-import { finishLoading, startLoading } from '../../redux/actions/ui';
 
 const Login = (props) => {
     const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Login = (props) => {
             password: e.target.password.value
         };
 
-        // Esta función debería de estar en el archivo auth.js, pero necesito usar
+        // cheroki - Esta función debería de estar en el archivo auth.js, pero necesito usar
         // el hook useHistory, y fuera de un componente de React no se usarlo
         const startLoginEmailPassword = (email, password) => {
             return (dispatch) => {
@@ -91,10 +91,11 @@ const Login = (props) => {
         //     });
     }
 
-    // Esta función debería de estar en el archivo auth.js, pero necesito usar
+    // cheroki - Esta función debería de estar en el archivo auth.js, pero necesito usar
     // el hook useHistory, y fuera de un componente de React no se usarlo
     const startGoogleLogin = () => {
         return (dispatch) => {
+            dispatch(startLoading());
             signInWithPopup(auth, googleAuthProvider)
                 .then(({user}) => {
                     Swal.fire({
@@ -112,9 +113,13 @@ const Login = (props) => {
                     setTimeout(() => {
                         history.push("/profile")
                     }, 500)
+                    dispatch(finishLoading())
     
                 })
-                .catch(e => console.log(e))
+                .catch(e => {
+                    console.log(e)
+                    dispatch(finishLoading())
+                })
         }
     }
 

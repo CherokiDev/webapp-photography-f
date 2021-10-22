@@ -25,10 +25,10 @@ const Adminprofile = (props) => {
     return (
         <div className="main">
             <Logout />
-            <div className="buttons">
+            {/* <div className="buttons">
                 <button><Link to="/adminprofile/adminappointments">Gestionar las citas</Link></button>
                 <button onClick={getAllUsers}><Link to="/adminprofile/adminusers">Lista de clientes</Link></button>
-            </div>
+            </div> */}
         </div>
     )
 }
