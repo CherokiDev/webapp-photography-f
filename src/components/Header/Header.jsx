@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import './Header.scss';
 import logo from '../../img/logo3.png';
 import menuIconOpen from '../../img/menuIconOpen.png'
@@ -8,6 +8,8 @@ import menuIconClose from '../../img/menuIconClose.png'
 import { Modal } from 'reactstrap';
 
 const Header = (props) => {
+
+    const { uid } = useSelector(state => state.user)
 
     const adminRole = ("admin");
     const [modal, setModal] = useState(false)
@@ -37,10 +39,10 @@ const Header = (props) => {
             <div className="headerButtons">
                 <NavLink to="/contact" exact activeStyle={{textDecoration: 'underline'}}>Contacto</NavLink>
             </div>
-            {props.user?.token
+            {uid
                 ?
                 <div className="headerButtons">
-                    {adminRole.includes(props.user.role)
+                    {adminRole.includes(props?.user)
                         ?
                         <NavLink to="/adminprofile" exact activeStyle={{textDecoration: 'underline'}}>Mi Perfil (admin)</NavLink>
                         :

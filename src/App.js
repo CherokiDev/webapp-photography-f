@@ -53,7 +53,7 @@ function App() {
 
   if(checking) {
     return (
-      <h1>Cargando usuario...</h1>
+      <h1>Cargando...</h1>
     )    
   }
 

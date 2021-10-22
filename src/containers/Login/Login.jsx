@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Router, Route } from 'react-router-dom';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
@@ -7,13 +7,18 @@ import { LOGIN } from '../../redux/types/userType';
 import Swal from 'sweetalert2';
 import './Login.scss'
 import loading from '../../img/loading.svg';
-import { startGoogleLogin, startLoginEmailPassword } from '../../redux/actions/auth';
+import { login, startGoogleLogin, startLoginEmailPassword } from '../../redux/actions/auth';
+import Profile from '../Profile/Profile';
+import { getAuth, signInWithEmailAndPassword, signInWithPopup } from '@firebase/auth';
+import { googleAuthProvider } from '../../utils/firebaseConfig';
+import { finishLoading, startLoading } from '../../redux/actions/ui';
 
 const Login = (props) => {
     const dispatch = useDispatch();
     const { loading } = useSelector(state => state.ui)
     const history = useHistory();
     const [isLoading, setIsLoading] = React.useState(false);
+    const auth = getAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,8 +27,44 @@ const Login = (props) => {
             email: e.target.email.value,
             password: e.target.password.value
         };
+
+        // Esta función debería de estar en el archivo auth.js, pero necesito usar
+        // el hook useHistory, y fuera de un componente de React no se usarlo
+        const startLoginEmailPassword = (email, password) => {
+            return (dispatch) => {
+                dispatch(startLoading());
+        
+                signInWithEmailAndPassword(auth, email, password)
+                    .then(({
+                        user
+                    }) => {
+                        dispatch(login(user.uid, user.displayName))
+        
+                        Swal.fire({
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            text: 'Sesión iniciada correctamente'
+                        })
+                
+                        setTimeout(() => {
+                            history.push('/profile')
+                        }, 1500)
+                
+                        dispatch(finishLoading())
+                    })
+                    .catch(e => {
+                        console.log(e)
+                        dispatch(finishLoading())
+                    })
+        
+            }
+        }
+
         dispatch(startLoginEmailPassword(userData.email, userData.password))
 
+     
         // setIsLoading(true);
         // await axios.post(process.env.REACT_APP_API_URL + '/users/login', userData)
         //     .then(res => {
@@ -50,8 +91,36 @@ const Login = (props) => {
         //     });
     }
 
-    const handleGoogleLogin = () => {
-        dispatch(startGoogleLogin());
+    // Esta función debería de estar en el archivo auth.js, pero necesito usar
+    // el hook useHistory, y fuera de un componente de React no se usarlo
+    const startGoogleLogin = () => {
+        return (dispatch) => {
+            signInWithPopup(auth, googleAuthProvider)
+                .then(({user}) => {
+                    Swal.fire({
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        icon: 'success',
+                        text: 'Sesión iniciada correctamente'
+                    })
+                        
+             
+                    dispatch(
+                        login(user.uid, user.displayName)
+                    )
+                    setTimeout(() => {
+                        history.push("/profile")
+                    }, 500)
+    
+                })
+                .catch(e => console.log(e))
+        }
+    }
+
+    const handleGoogleLogin =  () => {
+         dispatch(startGoogleLogin());
+       
     }
 
     return (
