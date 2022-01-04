@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "parisienne";
+  src: url("../../font/Parisienne-Regular.ttf");
+  font-display: fallback;
+}
+
 //Para que el footer se quede abajo
 .main {
   flex: 1 0 auto;

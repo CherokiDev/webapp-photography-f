@@ -6,6 +6,7 @@ import logo from '../../img/logo3.png';
 import menuIconOpen from '../../img/menuIconOpen.png'
 import menuIconClose from '../../img/menuIconClose.png'
 import { Modal } from 'reactstrap';
+import Swal from 'sweetalert2'
 
 const Header = (props) => {
 
@@ -20,44 +21,53 @@ const Header = (props) => {
         });
     }
 
+    const manejarModal = () => {
+        Swal.fire({
+            showConfirmButton: true,                    
+            icon: 'success',
+            text: 'Revise su email, se le ha enviado un enlace para crear una nueva contraseña'
+        })
+    }
+
     return (
         <header className="header">
+            <button onClick={manejarModal}>modal</button>
             <div className="logo">
                 <Link to="/">
                     <img src={logo} alt="inicio" />
                 </Link>
             </div>
             <div className="headerButtons">
-                <NavLink to="/" exact activeStyle={{textDecoration: 'underline'}}>Inicio</NavLink>
+                <NavLink to="/" exact activeStyle={{ textDecoration: 'underline' }}>Inicio</NavLink>
             </div>
             <div className="headerButtons">
-                <NavLink to="/gallery" exact activeStyle={{textDecoration: 'underline'}}>Galería</NavLink>
+                <NavLink to="/gallery" exact activeStyle={{ textDecoration: 'underline' }}>Galería</NavLink>
             </div>
             <div className="headerButtons">
-                <NavLink to="/aboutme" exact activeStyle={{textDecoration: 'underline'}}>Sobre mí</NavLink>
+                <NavLink to="/aboutme" exact activeStyle={{ textDecoration: 'underline' }}>Sobre mí</NavLink>
             </div>
             <div className="headerButtons">
-                <NavLink to="/contact" exact activeStyle={{textDecoration: 'underline'}}>Contacto</NavLink>
+                <NavLink to="/contact" exact activeStyle={{ textDecoration: 'underline' }}>Contacto</NavLink>
             </div>
             {uid
                 ?
                 <div className="headerButtons">
                     {adminRole.includes(props?.user)
                         ?
-                        <NavLink to="/adminprofile" exact activeStyle={{textDecoration: 'underline'}}>Mi Perfil (admin)</NavLink>
+                        <NavLink to="/adminprofile" exact activeStyle={{ textDecoration: 'underline' }}>Mi Perfil (admin)</NavLink>
                         :
-                        <NavLink to="/profile" exact activeStyle={{textDecoration: 'underline'}}>Mi Perfil</NavLink>
+                        <NavLink to="/profile" exact activeStyle={{ textDecoration: 'underline' }}>Mi Perfil</NavLink>
                     }
                 </div>
                 :
                 <div className="headerButtons">
-                    <NavLink to="/login" exact activeStyle={{textDecoration: 'underline'}}>Mi perfil</NavLink>
+                    <NavLink to="/login" exact activeStyle={{ textDecoration: 'underline' }}>Mi perfil</NavLink>
                 </div>
             }
             <div onClick={openModal} className="headerButtonOpenMenu">
-                    <img src={menuIconOpen} alt="Abrir menú" />
+                <img src={menuIconOpen} alt="Abrir menú" />
             </div>
-            
+
 
             <Modal className="modal" isOpen={modal.open}>
                 <div className="headerButtonsMenu">
@@ -89,7 +99,7 @@ const Header = (props) => {
                 }
                 <div onClick={openModal} className="headerButtonCloseMenu">
                     <img src={menuIconClose} alt="Cerrar menú" />
-            </div>
+                </div>
             </Modal>
 
         </header>

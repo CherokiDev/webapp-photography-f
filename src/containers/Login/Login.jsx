@@ -33,62 +33,35 @@ const Login = (props) => {
         const startLoginEmailPassword = (email, password) => {
             return (dispatch) => {
                 dispatch(startLoading());
-        
                 signInWithEmailAndPassword(auth, email, password)
-                    .then(({
-                        user
-                    }) => {
-                        dispatch(login(user.uid, user.displayName))
-        
+                    .then(({ user }) => {
+                        dispatch(login(user.uid, user.displayName));
                         Swal.fire({
                             showConfirmButton: false,
                             timer: 2000,
                             timerProgressBar: true,
                             icon: 'success',
                             text: 'Sesión iniciada correctamente'
-                        })
-                
+                        });
                         setTimeout(() => {
                             history.push('/profile')
-                        }, 1500)
-                
+                        }, 1500);
+                        dispatch(finishLoading());
+                    })
+                    .catch(() => {
+                        Swal.fire({
+                            showConfirmButton: true,
+                            icon: 'error',
+                            text: 'Ha habido un error. Puede ser que hayas introducido mal algún dato, o que todavía no hayas creado una cuenta.'
+                        })
                         dispatch(finishLoading())
                     })
-                    .catch(e => {
-                        console.log(e)
-                        dispatch(finishLoading())
-                    })
-        
+
             }
         }
 
         dispatch(startLoginEmailPassword(userData.email, userData.password))
 
-     
-        // setIsLoading(true);
-        // await axios.post(process.env.REACT_APP_API_URL + '/users/login', userData)
-        //     .then(res => {
-        //         setIsLoading(false)
-        //         props.dispatch({ type: LOGIN, payload: res.data })
-        //         Swal.fire({
-        //             showConfirmButton: false,
-        //             timer: 3000,
-        //             timerProgressBar: true,
-        //             icon: 'success',
-        //             text: 'Sesión iniciada correctamente'
-        //         })
-
-        //         setTimeout(() => {
-        //             history.push('/')
-        //         }, 1500)
-        //     }).catch(err => {
-        //         setIsLoading(false)
-        //         Swal.fire({
-        //             showConfirmButton: true,
-        //             icon: 'error',
-        //             text: 'Ha habido un error. Puede ser que hayas introducido mal algún dato, o que todavía no hayas creado una cuenta.'
-        //         })
-        //     });
     }
 
     // cheroki - Esta función debería de estar en el archivo auth.js, pero necesito usar
@@ -97,24 +70,20 @@ const Login = (props) => {
         return (dispatch) => {
             dispatch(startLoading());
             signInWithPopup(auth, googleAuthProvider)
-                .then(({user}) => {
+                .then(({ user }) => {
                     Swal.fire({
                         showConfirmButton: false,
                         timer: 2000,
                         timerProgressBar: true,
                         icon: 'success',
                         text: 'Sesión iniciada correctamente'
-                    })
-                        
-             
-                    dispatch(
-                        login(user.uid, user.displayName)
-                    )
+                    });
+                    dispatch(login(user.uid, user.displayName));
                     setTimeout(() => {
                         history.push("/profile")
-                    }, 500)
-                    dispatch(finishLoading())
-    
+                    }, 500);
+                    dispatch(finishLoading());
+
                 })
                 .catch(e => {
                     console.log(e)
@@ -123,15 +92,14 @@ const Login = (props) => {
         }
     }
 
-    const handleGoogleLogin =  () => {
-         dispatch(startGoogleLogin());
-       
+    const handleGoogleLogin = () => {
+        dispatch(startGoogleLogin());
     }
 
     return (
         <div className="main">
             <form className="mainContainer" action="" onSubmit={handleSubmit}>
-                <h3>Inicio de sesión</h3>
+                <h3>Iniciar sesión</h3>
                 <div>Correo electrónico:</div>
                 <input type="email" name="email" placeholder="Introduce tu email" required />
                 <div>Contraseña:</div>
@@ -141,11 +109,13 @@ const Login = (props) => {
                 <button
                     type="submit"
                     disabled={loading}
-                >Iniciar sesión
+                >
+                    Iniciar sesión
                 </button>
                 <button
                     disabled={loading}
-                    onClick={handleGoogleLogin}>
+                    onClick={handleGoogleLogin}
+                >
                     Iniciar sesión con Google
                 </button>
 

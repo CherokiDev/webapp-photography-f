@@ -22,76 +22,35 @@ const Register = () => {
 
         const userData = {
             firstname: event.target.firstname.value,
-            // lastname: event.target.lastname.value,
             email: event.target.email.value,
             password: event.target.password.value,
-            // phone: event.target.phone.value,
-            // postalcode: event.target.postalcode.value,
-            // city: event.target.city.value,
         };
 
-        // if (!regExFullName.test(userData.firstname)) {
-        //     Swal.fire({
-        //         showConfirmButton: true,
-        //         icon: 'error',
-        //         text: 'El formato del nombre no es válido. No puede contener números'
-        //     })
-        //     return;
-        // } else if (!regExFullName.test(userData.lastname)) {
-        //     Swal.fire({
-        //         showConfirmButton: true,
-        //         icon: 'error',
-        //         text: 'El formato del apellido no es válido. No puede contener números'
-        //     })
-        //     return;
-        // } else if (!regExEmail.test(userData.email)) {
-        //     Swal.fire({
-        //         showConfirmButton: true,
-        //         icon: 'error',
-        //         text: 'El formato del correo electrónico no es válido.'
-        //     })
-        //     return;
-        // } else if (!regExPassword.test(userData.password)) {
-        //     Swal.fire({
-        //         showConfirmButton: true,
-        //         icon: 'error',
-        //         text: 'La contraseña debe contener al menos: entre 8 y 16 caracteres, 1 número, 1 letra minúscula, 1 letra mayúscula y 1 carácter especial como #, @, %.'
-        //     })
-        //     return;
-        // } else if (!regExPhone.test(userData.phone)) {
-        //     Swal.fire({
-        //         showConfirmButton: true,
-        //         icon: 'error',
-        //         text: 'El formato del teléfono no es válido.'
-        //     })
-        //     return;
-        // }
+        if (!regExFullName.test(userData.firstname)) {
+            Swal.fire({
+                showConfirmButton: true,
+                icon: 'error',
+                text: 'El formato del nombre no es válido. No puede contener números'
+            })
+            return;
+        } else if (!regExEmail.test(userData.email)) {
+            Swal.fire({
+                showConfirmButton: true,
+                icon: 'error',
+                text: 'El formato del correo electrónico no es válido.'
+            })
+            return;
+        } else if (!regExPassword.test(userData.password)) {
+            Swal.fire({
+                showConfirmButton: true,
+                icon: 'error',
+                text: 'La contraseña debe contener al menos: entre 8 y 16 caracteres, 1 número, 1 letra minúscula, 1 letra mayúscula y 1 carácter especial como #, @, %.'
+            })
+            return;
+        }
 
         dispatch(registerWithNameEmailPassword(userData.firstname, userData.email, userData.password))
         
-
-        // setIsLoading(true);
-        // await axios.post(process.env.REACT_APP_API_URL + '/users/register', userData)
-        //     .then(() => {
-        //         setIsLoading(false);
-        //         Swal.fire({
-        //             showConfirmButton: false,
-        //             timer: 3000,
-        //             timerProgressBar: true,
-        //             icon: 'success',
-        //             text: 'Registro completado satisfactoriamente'
-        //         })
-        //         setTimeout(() => {
-        //             history.push('/login')
-        //         }, 1500)
-        //     }).catch(() => {
-        //         setIsLoading(false)
-        //         Swal.fire({
-        //             showConfirmButton: true,
-        //             icon: 'error',
-        //             text: 'Ha habido un error al intentar crear el registro'
-        //         })
-        //     });
     }
 
     const checkValidation = (e) => {
@@ -126,12 +85,6 @@ const Register = () => {
                 <div>Confirmar contraseña:*</div>
                 <input type="password" value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" placeholder="Confirma la contraseña" required />
                 <div className="confirmPassword">{isError}</div>
-                {/* <div>Teléfono:*</div>
-                <input type="text" name="phone" placeholder="Introduce tu teléfono" required />
-                <div>Código postal:</div>
-                <input type="text" name="postalcode" placeholder="Introduce tu código postal" />
-                <div>Ciudad:</div>
-                <input type="text" name="city" placeholder="Introduce tu ciudad" /> */}
                 <div className="divButton">
                     {isLoading
                         ?

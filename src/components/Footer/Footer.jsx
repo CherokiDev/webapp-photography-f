@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
             <div className="rightFooter">
                 <p>
-                    Created by <a target="_blank" rel="noreferrer" href="https://github.com/Cheroki84">Miguel Ángel Morato</a>
+                    Created by <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/miguelangelmorato84/">Miguel Ángel Morato</a>
                 </p>
             </div>
         </div>
