@@ -4,6 +4,8 @@ import { getFirestore } from 'firebase/firestore';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
+  //CHEROKI-TIP para que los cambios efectuados en las variables de entorno (en .env)
+  // tengan efecto, hay que reiniciar la aplicación (volver a hacer npm start)
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
